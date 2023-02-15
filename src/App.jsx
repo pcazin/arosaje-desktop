@@ -20,8 +20,8 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route element={<PrivateRoutes />}>
-            <Route path="/messages/:id" element={<ConversationsDetailsPage />} />
-            <Route path="/profil/:id?" element={<ProfilPage />} />
+            <Route path="/messages/:username" element={<ConversationsDetailsPage />} />
+            <Route path="/profil/:username" element={<ProfilPage />} />
             <Route path="/plant/:id" element={<PlantPage />} />
             <Route path="/plant/new" element={<NewPlantPage />} />
             <Route path="/profil" element={<ProfilPage />} />

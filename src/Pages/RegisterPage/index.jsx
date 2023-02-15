@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Navigate, NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import * as CONSTANTS from "../../constants";
 import authService from '../../Services/auth.service';
 import './styles.css';
@@ -24,7 +24,6 @@ export default function RegisterPage() {
     } 
   }
 
-
   const HandleSubmit = async () => {
     // check username 
     if(username.length < CONSTANTS.USERNAME_MIN_LENGTH) {
@@ -37,18 +36,15 @@ export default function RegisterPage() {
       return;
     }
 
-    // send login request
+    // send register request
     const result = await authService.register(username, password);
-
-    console.log(result)
-    console.log("token: " + result.token)
 
     if(result.token) {
       // navigate to home
       navigate("/")
     } else {
       // show the error
-      alert(result)
+      alert("Erreur de création, essayer avec d'autres identifiants.")
     }
   }
 

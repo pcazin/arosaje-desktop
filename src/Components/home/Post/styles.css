@@ -1,0 +1,8 @@
+.post {
+  width: 500px;
+  height: 360px;
+  background-color: rgb(105, 101, 101);
+  border-radius: 33px;
+  position: relative;
+  overflow: hidden;
+}

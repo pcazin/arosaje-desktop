@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Navigate, NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import * as CONSTANTS from "../../constants";
 import authService from '../../Services/auth.service';
 import './styles.css';
@@ -8,6 +8,7 @@ export default function LoginPage() {
 
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
+  const navigate = useNavigate();
 
   const onUsernameChange = (e) => {
     const value = e.target.value
@@ -37,15 +38,13 @@ export default function LoginPage() {
     }
 
     // send login request
-    await authService.login(username, password).then(
-      () => {
-        if (authService.isConnected()) {
-          <Navigate to='/' />
-        } else {
-          alert("error login")
-        }
-      }
-    )
+    const result = await authService.login(username, password);
+
+    if(result.token) {
+      navigate("/")
+    } else {
+      alert("Les identifiants ne correspondent pas.")
+    }
   }
 
   return (
