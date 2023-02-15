@@ -1,7 +1,7 @@
 import './App.css';
-import { Redirect, Switch, Route, Router } from "react-router-dom";
+import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 
-import RouteGuard from './Routes/RouteGuard';
+import PrivateRoutes from './Routes/PrivateRoutes';
 
 import HomePage from './Pages/HomePage';
 import LoginPage from './Pages/LoginPage';
@@ -14,66 +14,25 @@ import ConversationsDetailsPage from './Pages/ConversationsDetailsPage';
 
 function App() {
   return (
-    <Router>
-      <Switch>
-
-        <RouteGuard
-          exact
-          path="/"
-          component={HomePage}
-        />
-
-        <Route
-          path="/login"
-          component={LoginPage}
-        />
-
-        <Route
-          path="/register"
-          component={RegisterPage}
-        />
-
-        <RouteGuard
-          exact
-          path="/profil"
-          component={ProfilPage}
-        />
-
-        <RouteGuard
-          exact
-          path="/profil/:id?"
-          component={ProfilPage}
-        />
-
-        <RouteGuard
-          exact
-          path="/plant/:id"
-          component={PlantPage}
-        />
-
-        <RouteGuard
-          exact
-          path="/plant/new"
-          component={NewPlantPage}
-        />
-
-        <RouteGuard
-          exact
-          path="/messages"
-          component={ConversationsMenuPage}
-        />
-
-        <RouteGuard
-          exact
-          path="/messages/:id"
-          component={ConversationsDetailsPage}
-        />
-
-        <Redirect to="/" />
-
-      </Switch>
-    </Router>
+    <div id="app">
+      <Router>
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route element={<PrivateRoutes />}>
+            <Route path="/messages/:id" element={<ConversationsDetailsPage />} />
+            <Route path="/profil/:id?" element={<ProfilPage />} />
+            <Route path="/plant/:id" element={<PlantPage />} />
+            <Route path="/plant/new" element={<NewPlantPage />} />
+            <Route path="/profil" element={<ProfilPage />} />
+            <Route path="/messages" element={<ConversationsMenuPage />} />
+            <Route path="/" element={<HomePage />} />
+          </Route>
+        </Routes>
+      </Router>
+    </div>
   );
 }
 
 export default App;
+

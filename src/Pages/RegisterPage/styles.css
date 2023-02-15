@@ -1,0 +1,56 @@
+#register {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#register #register-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 25vh;
+}
+
+h1 {
+  margin: 0;
+  text-align: center;
+  text-transform: capitalize;
+  font-family: 'Italiana', serif;
+  font-size: 80px;
+}
+
+#password, #username {
+  height: 35px;
+  padding-left: 10px;
+}
+
+#username {
+  margin-top: 50px;
+}
+
+#password {
+  margin-top: 30px;
+}
+
+#login-container a:first-of-type {
+  margin-top: 15px;
+}
+
+button {
+  color: white;
+  background: #2B6D4A;
+  border-radius: 5px;
+  margin-top: 25px;
+  font-size: 22px;
+  padding: 8px 0;
+  cursor: pointer;
+}
+
+button::first-letter {
+  text-transform: uppercase;
+}
+
+p {
+  text-align: center;
+  color: rgb(99, 98, 98);
+}

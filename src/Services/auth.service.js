@@ -1,47 +1,60 @@
 import axios from "axios";
+import authHeaders from "./auth-header";
 
-const API_URL = "http://localhost:8080/api/auth/";
+const API_URL = "http://localhost:8000";
 
 class AuthService {
 
-  login(username, password) {
+  async login(username, password) {
+
+    const body = { 'username': username, 'password': password }
+
     return axios
-      .post(API_URL + "signin", {
-        username,
-        password
-      })
+      .post(API_URL + "/user/login", body, authHeaders())
       .then(response => {
-        if (response.access_token) {
-          localStorage.setItem("access_token", JSON.stringify(response.access_token));
-        } else {
-          throw new Error("Login failed.")
-        }
-      });
+        localStorage.setItem("token", JSON.stringify(response.data.token.access_token));
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+        return response.data
+      })
+      .catch((error) => {
+        console.error(error)
+        return error;
+      })
   }
 
-  register(username, password) {
-    return axios.post(API_URL + "signup", {
-      username,
-      password
-    })
-    .then( response => {
-      if(response.access_token) {
-        localStorage.setItem("access_token", JSON.stringify(response.access_token));
-      } else {
-        throw new Error("Register failed.")
-      }
-    })
+  async register(username, password) {
+
+    const body = { 'username': username, 'password': password }
+
+    return axios.post(API_URL + "/user/signup", body, authHeaders())
+      .then(response => {
+        console.log("ici")
+        console.log(response.data.token.access_token)
+        localStorage.setItem("token", JSON.stringify(response.data.token.access_token));
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+        return response.data
+      })
+      .catch((error) => {
+        console.error(error)
+        return error;
+      })
   }
 
   logout() {
-    localStorage.removeItem("access_token");
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+  }
+
+  isConnected() {
+    const token = localStorage.getItem('token');
+
+    return token ? true : false;
   }
 
   getCurrentUser() {
-    // refaire une requete pour fetch le user
-    // doit retourner tout sur le user
-    return JSON.parse(localStorage.getItem('user'));;
+    return JSON.parse(localStorage.getItem('user'));
   }
 }
 
-export default new AuthService();
+const authService = new AuthService();
+export default authService;
