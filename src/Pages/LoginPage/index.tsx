@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import * as CONSTANTS from "../../constants";
-import authService from '../../Services/auth.service';
+import authService from '../../services/AuthService';
 import './styles.css';
+import React from 'react';
 
 export default function LoginPage() {
 
@@ -10,14 +11,14 @@ export default function LoginPage() {
   const [password, setPassword] = useState("")
   const navigate = useNavigate();
 
-  const onUsernameChange = (e) => {
+  const onUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
     if (value.length <= CONSTANTS.USERNAME_MAX_LENGTH) {
       setUsername(value)
     }
   }
 
-  const onPasswordChange = (e) => {
+  const onPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
     if (value.length <= CONSTANTS.PASSWORD_MAX_LENGTH) {
       setPassword(value)

@@ -1,9 +1,9 @@
 import { NavLink, useNavigate } from 'react-router-dom';
-import authService from '../../Services/auth.service';
+import authService from '../../services/AuthService';
 import './styles.css';
-import Logout from '../../Assets/header/logout.png';
-import Profil from '../../Assets/header/profil.png';
-import Messages from "../../Assets/header/messages.png";
+import Logout from '../../assets/header/logout.png';
+import Profil from '../../assets/header/profil.png';
+import Messages from "../../assets/header/messages.png";
 
 
 export default function Header() {

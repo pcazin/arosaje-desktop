@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as CONSTANTS from "../../constants";
-import authService from '../../Services/auth.service';
+import authService from '../../services/AuthService';
 import './styles.css';
 
 export default function RegisterPage() {

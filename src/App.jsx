@@ -1,16 +1,16 @@
 import './App.css';
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 
-import PrivateRoutes from './Routes/PrivateRoutes';
+import PrivateRoutes from './routes/PrivateRoutes';
 
-import HomePage from './Pages/HomePage';
-import LoginPage from './Pages/LoginPage';
-import RegisterPage from './Pages/RegisterPage';
-import ProfilPage from './Pages/ProfilPage';
-import PlantPage from './Pages/PlantPage';
-import NewPlantPage from './Pages/NewPlantPage';
-import ConversationsMenuPage from './Pages/ConversationsMenuPage';
-import ConversationsDetailsPage from './Pages/ConversationsDetailsPage';
+import HomePage from './pages/HomePage';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import ProfilPage from './pages/ProfilPage';
+import PlantPage from './pages/PlantPage';
+import NewPlantPage from './pages/NewPlantPage';
+import ConversationsMenuPage from './pages/ConversationsMenuPage';
+import ConversationsDetailsPage from './pages/ConversationsDetailsPage/index';
 
 function App() {
   return (

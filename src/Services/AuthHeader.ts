@@ -1,10 +1,12 @@
-export default function authHeaders() {
+import { AxiosRequestConfig } from "axios";
 
-  const token = localStorage.getItem('token');
+export default function getHeaders(): AxiosRequestConfig {
 
   return {
-    'Content-Type': 'application/json',
-    "access_token": token
-  }
+    headers: {
+      'Content-Type': 'application/json',
+      'access_token': localStorage.getItem('token') || null
+    }
+  };
 }
 

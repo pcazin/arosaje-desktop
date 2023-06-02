@@ -1,15 +1,16 @@
 import axios from 'axios';
-import authHeader from './AuthHeader';
+import authHeaders from './AuthHeader';
 import authService from './AuthService';
 import { UserProps } from '../shared/UserProps';
 import { PostProps } from '../shared/PostProps';
+import getHeaders from './AuthHeader';
 
 const API_URL = 'http://127.0.0.1:8000';
 
 export default class PlanteService {
 
-  static getFeed(): Promise<PostProps[]> {
-    return axios.get(API_URL + '/plants?skip=0&limit=100', { headers: authHeader() });
+  static getFeed(): Promise<any> {
+    return axios.get(API_URL + '/plants?skip=0&limit=100', getHeaders());
   }
 
   static newPlant(nom: string, type: string, description: string, photo: string) {
@@ -20,7 +21,7 @@ export default class PlanteService {
       throw new Error("No user in getCurrentUser")
     }
 
-    axios.post(API_URL + "new", { headers: authHeader(), body: {
+    axios.post(API_URL + "new", { headers: authHeaders(), body: {
       nom: nom,
       type: type,
       description: description,
@@ -33,16 +34,11 @@ export default class PlanteService {
 
     const currentUser : null | UserProps = authService.getCurrentUser()
 
-    if(currentUser === null) {
+    if(!currentUser) {
       throw new Error("No user in getCurrentUser")
     }
 
-    axios.delete(API_URL + "delete", { headers: authHeader(), data: {
-      body: {
-        plant_id: plant_id,
-        user_id: currentUser.id
-      }
-    } })
+    axios.delete(`${API_URL}/delete/${plant_id}`, getHeaders())
   }
 
   static updatePlant(plant_id: number, nom: string, type: string, description: string, photo: string) {
@@ -53,7 +49,7 @@ export default class PlanteService {
       throw new Error("No user in getCurrentUser")
     }
 
-    axios.put(API_URL + "new", { headers: authHeader(), data: {
+    axios.put(API_URL + "new", { headers: authHeaders(), data: {
       body: {
         plant_id: plant_id,
         nom: nom,

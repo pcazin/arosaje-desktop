@@ -1,6 +1,6 @@
-import Post from "../../components/home/Post/index.js";
-import SearchBar from "../../components/home/searchBar/index.js";
-import PlanteService from "../../services/PlanteService.js";
+import Post from "../../components/home/Post";
+import SearchBar from "../../components/home/searchBar";
+import PlanteService from "../../services/PlanteService";
 import "./styles.css";
 import { useEffect, useState } from "react";
 import { PostProps } from "../../shared/PostProps.js";
@@ -13,10 +13,9 @@ export default function HomePage() {
   useEffect(() => {
 
     const fetchData = async () => {
-      const res: PostProps[] = await PlanteService.getFeed();
-      const dazta 
-      console.log(data.data)
-      setData(data.data)
+      const res = await PlanteService.getFeed();
+      const data: PostProps[] = res.data;
+      setData(data)
     };
 
     fetchData().catch(console.error);
@@ -24,7 +23,7 @@ export default function HomePage() {
 
   if (!data) return "loading";
 
-  const posts = data.map((post) => <Post data={post} />);
+  const posts = data.map((post, index) => <Post data={post} key={index} />);
 
   return (
     <div id="home">

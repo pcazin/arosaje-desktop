@@ -1,7 +1,12 @@
 import './styles.css';
-import Plant from "../../../../Assets/post/plant.jpg";
+import Plant from "../../../../assets/post/plant.jpg";
+import React from 'react';
 
-export default function PostImage({image}) {
+interface Props {
+  image: string;
+}
+
+export default function PostImage({image}: Props) {
   return (
     <img src={Plant} alt="plant" className='post-image'/>
   )

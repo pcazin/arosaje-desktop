@@ -1,10 +1,15 @@
 import './styles.css';
-import Chevron from "../../../../Assets/post/chevron.png";
-import { useState } from 'react';
+import Chevron from '../../../../assets/post/chevron.png';
+import React from "react";
 
-export default function PostShowComments({onClick, show}) {
+interface Props {
+  onClick: (bool: boolean) => void;
+  show: boolean;
+}
 
-  const handleClick = (e) => {
+export default function PostShowComments({onClick, show}: Props) {
+
+  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     onClick(!show)
   }

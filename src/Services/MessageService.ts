@@ -6,13 +6,13 @@ const API_URL = 'http://localhost:8080/api/message/';
 
 class MessageService {
   
-  getMessagesMenu() {
+  /* getMessagesMenu() {
     return axios.get(API_URL + 'menu', { headers: authHeader(), data: { body: authService.getCurrentUser()?.id ?? null } });
-  }
+  } */
 
-  getMessagesDetails() {
+  /* getMessagesDetails() {
     return axios.get(API_URL + 'details', { headers: authHeader(), data: { body: authService.getCurrentUser()?.id ?? null } });
-  }
+  } */
 
   addMessage(message: string, receiver_id: string) {
     return axios.post(API_URL + 'add', {
@@ -25,7 +25,7 @@ class MessageService {
     });
   }
 
-  deleteConversation(receiver_id: string) {
+  /* deleteConversation(receiver_id: string) {
     return axios.delete(API_URL + 'delete', {
       headers: authHeader(),
       data: {
@@ -33,7 +33,7 @@ class MessageService {
         receiver_id: receiver_id
       }
     });
-  }
+  } */
 }
 
 export default new MessageService();
