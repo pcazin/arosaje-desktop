@@ -1,8 +1,8 @@
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-import Header from '../Layouts/Header';
-import Footer from '../Layouts/Footer';
-import authService from '../Services/auth.service';
+import Header from '../layouts/Header';
+import Footer from '../layouts/Footer';
+import authService from '../services/AuthService';
 
 const PrivateRoutes = () => {
    return (
