@@ -5,8 +5,13 @@
 }
 
 #post-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    width: fit-content;
-    grid-gap: 20px;
+ display: flex;
+ flex-direction: column;
+ width: 90%;
+ position: relative;
+ z-index: 0;
+}
+
+#post-container:last-child {
+    margin-bottom: 85px;
 }

@@ -49,8 +49,3 @@ button {
 button::first-letter {
   text-transform: uppercase;
 }
-
-p {
-  text-align: center;
-  color: rgb(99, 98, 98);
-}

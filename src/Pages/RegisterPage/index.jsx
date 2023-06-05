@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 import * as CONSTANTS from "../../constants";
 import authService from '../../services/AuthService';
 import './styles.css';
@@ -54,7 +54,7 @@ export default function RegisterPage() {
 
         <h1>arosaje</h1>
 
-        <p>Le babysitting, pour vos plantes.</p>
+        <p className="text-center text-slate-400">Le babysitting, pour vos plantes.</p>
 
         <input
           type="text"
@@ -73,6 +73,13 @@ export default function RegisterPage() {
           value={password}
           onChange={(e) => onPasswordChange(e)}
         />
+
+        <NavLink
+          to='/login'
+          className='links'
+        >
+          se connecter
+        </NavLink>
 
         <button 
           onClick={HandleSubmit}

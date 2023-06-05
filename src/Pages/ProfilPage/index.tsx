@@ -27,6 +27,7 @@ export default function ProfilPage() {
     console.log(user);
 
     const getProfilePicture = () => {
+        console.log("ICICICICICI")
         console.log(user.profile_picture);
         if (!user.profile_picture) return <NoProfilePicture />;
         return <img src={user.profile_picture} alt="sdd" />;

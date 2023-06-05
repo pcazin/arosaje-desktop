@@ -13,23 +13,17 @@ export default function Post({ data }: { data: PostProps}) {
 
   const navigate = useNavigate()
 
-  /* const [showComments, setShowComments] = useState(false); */
-
-  /* const HandleShowComments = (bool: boolean) => {
-    setShowComments(bool)
-  } */
-
   const HandleClick = () => {
     navigate(`/plant/${data.id}`)
   }
 
+  console.log(data)
+
   return (
     <div className="post" onClick={HandleClick}>
-      <PostProfil picture={data.photo} name={data.user.username} />
-      {/* <PostShowComments onClick={HandleShowComments} show={showComments} /> */}
-      <PostImage image={data.photo} />
+      <PostProfil profilPictureUrl={data.user.profile_picture} user={data.user} />
+      <PostImage postPictureUrl={data.photo} />
       <PostSendMessage username={data.user.username} />
-      {/*<PostComments comments={data} show={showComments} />*/}
     </div>
   )
 }
