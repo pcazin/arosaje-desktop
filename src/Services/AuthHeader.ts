@@ -5,8 +5,9 @@ export default function getHeaders(): AxiosRequestConfig {
   return {
     headers: {
       'Content-Type': 'application/json',
-      'access_token': localStorage.getItem('token') || null
+      'Authorization': "Bearer " + localStorage.getItem('token')
     }
   };
 }
+
 

@@ -14,8 +14,15 @@ export default class AuthService {
     return axios
       .post(API_URL + "/user/login", data, getHeaders())
       .then(response => {
-        localStorage.setItem("token", JSON.stringify(response.data.token.access_token));
-        localStorage.setItem("user", JSON.stringify(response.data.user));
+
+        const token = JSON.stringify(response.data.token.access_token)
+        const user = JSON.stringify(response.data.user)
+
+        console.log(token)
+
+        localStorage.setItem("token", JSON.parse(token));
+        localStorage.setItem("user", user);
+
         return response.data
       })
       .catch((error) => {
