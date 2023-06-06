@@ -7,28 +7,30 @@ import { PostProps } from "../../shared/PostProps.js";
 import React from "react";
 
 export default function HomePage() {
+    const [data, setData] = useState<PostProps[] | null>(null);
 
-  const [data, setData] = useState<PostProps[] | null>(null);
+    useEffect(() => {
+        const fetchData = async () => {
+            const res = await PlanteService.getFeed();
+            const data: PostProps[] = res.data;
+            setData(data);
+        };
 
-  useEffect(() => {
+        fetchData().catch(console.error);
+    }, []);
 
-    const fetchData = async () => {
-      const res = await PlanteService.getFeed();
-      const data: PostProps[] = res.data;
-      setData(data)
+    const handleSearch = (query: string) => {
+        console.log(query);
     };
 
-    fetchData().catch(console.error);
-  }, []);
+    if (!data) return "loading";
 
-  if (!data) return "loading";
+    const posts = data.map((post, index) => <Post data={post} key={index} />);
 
-  const posts = data.map((post, index) => <Post data={post} key={index} />);
-
-  return (
-    <div id="home">
-      <SearchBar />
-      <div id="post-container">{posts}</div>
-    </div>
-  );
+    return (
+        <div id="home">
+            <SearchBar onSearch={handleSearch} />
+            <div id="post-container">{posts}</div>
+        </div>
+    );
 }
