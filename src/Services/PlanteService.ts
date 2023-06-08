@@ -2,7 +2,6 @@ import axios from "axios";
 import authHeaders from "./AuthHeader";
 import authService from "./AuthService";
 import { UserProps } from "../shared/UserProps";
-import { PostProps } from "../shared/PostProps";
 import getHeaders from "./AuthHeader";
 
 const API_URL = "http://127.0.0.1:8000";
@@ -23,10 +22,14 @@ export default class PlanteService {
         const currentUser: null | UserProps = authService.getCurrentUser();
 
         if (currentUser === null) {
+            console.error("no current user found.");
             throw new Error("No user in getCurrentUser");
         }
 
-        return axios.post(API_URL + "/plants", {
+        console.log("user")
+        console.log(authService.getCurrentUser())
+
+        const body = {
             name: nom,
             type: type,
             description: description,
@@ -34,10 +37,14 @@ export default class PlanteService {
             longitude: longitude,
             photo: photo,
             user_id: currentUser.id,
-        }, {
+        };
+
+        return axios.post(API_URL + "/plants", body, {
             headers: {
-                'Authorization': "Bearer " + localStorage.getItem('token')
-            }
+                Authorization:
+                    "Bearer " +
+                    localStorage.getItem("token") as string,
+            },
         });
     }
 

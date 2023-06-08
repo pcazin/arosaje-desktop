@@ -17,8 +17,6 @@ export default function Post({ data }: { data: PostProps}) {
     navigate(`/plant/${data.id}`)
   }
 
-  console.log(data)
-
   return (
     <div className="post" onClick={HandleClick}>
       <PostProfil profilPictureUrl={data.user.profile_picture} user={data.user} />

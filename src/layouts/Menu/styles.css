@@ -5,13 +5,9 @@
   align-items: center;
   justify-content: center;
   height: 100px;
-  background-color: #ffffff;
+  background-image: linear-gradient(to top, #ffffff, #ffffff, #ffffff, #fffffffb, #ffffffe8);
   color: black;
   bottom: 0;
   z-index: 9999;
-}
-
-
-
-
+}   
 

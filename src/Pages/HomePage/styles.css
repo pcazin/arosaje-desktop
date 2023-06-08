@@ -15,3 +15,9 @@
 #post-container:last-child {
     margin-bottom: 85px;
 }
+
+.test {
+    color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}

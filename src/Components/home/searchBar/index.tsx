@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./styles.css";
 import CloseIcon from "@mui/icons-material/Close";
 
-type SearchBarProps = {
+interface SearchBarProps {
     onSearch: (query: string) => void;
 };
 
@@ -32,6 +32,7 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
                 type="text"
                 value={query}
                 onChange={handleChange}
+                placeholder="trèfles à quatres feuilles..."
             />
             <CloseIcon
                 onClick={handleClear}

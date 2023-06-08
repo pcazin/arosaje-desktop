@@ -38,7 +38,7 @@ export default class AuthService {
 
     return axios.post(url, data, getHeaders())
       .then(response => {
-        localStorage.setItem("token", JSON.stringify(response.data.token.access_token));
+        localStorage.setItem("token", JSON.parse(JSON.stringify(response.data.token.access_token)));
         localStorage.setItem("user", JSON.stringify(response.data.user));
         return response.data;
       })
@@ -65,6 +65,6 @@ export default class AuthService {
       return null;
     }
 
-    return localStorage.getItem('user') as unknown as UserProps
+    return JSON.parse(localStorage.getItem('user') as string) as UserProps
   }
 }

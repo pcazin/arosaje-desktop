@@ -11,11 +11,16 @@ interface Props {
 
 export default function PostProfil({profilPictureUrl, user}: Props) {
 
+  const defaultProfilPictureUrl = "https://soccerpointeclaire.com/wp-content/uploads/2021/06/default-profile-pic-e1513291410505.jpg";
+
   const navigate = useNavigate();
 
   const HandleClick = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     navigate(`/profil/${user.username}`)
+  }
+  if(profilPictureUrl === undefined || profilPictureUrl === null) {
+    profilPictureUrl = defaultProfilPictureUrl
   }
 
   return (

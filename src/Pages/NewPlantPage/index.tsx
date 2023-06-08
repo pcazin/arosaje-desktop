@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PlanteService from "../../services/PlanteService";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 /*export default function NewPlantPage() {
 
@@ -77,7 +78,7 @@ const NewPlantPage: React.FC = () => {
         const longitude = "1.450200";
 
         await PlanteService.newPlant(name, type, description, imageUrl, latitude, longitude).then((_res) => {
-            alert("c bon")
+            toast.success("Plante créée avec succès !")
             navigate("/")
         }
         ).catch(alert)
