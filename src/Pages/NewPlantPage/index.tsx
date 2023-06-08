@@ -121,7 +121,10 @@ const NewPlantPage: React.FC = () => {
 
     return (
         <div className="p-6">
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <h1 className="text-5xl">
+                Une de plus 
+            </h1>
+            <form onSubmit={handleSubmit} className="space-y-6 mt-16">
                 <div className="flex flex-col">
                     <label
                         htmlFor="nom"

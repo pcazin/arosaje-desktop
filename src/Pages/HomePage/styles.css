@@ -9,7 +9,7 @@
  flex-direction: column;
  width: 90%;
  position: relative;
- z-index: 0;
+ z-index: 0; 
 }
 
 #post-container:last-child {
@@ -18,6 +18,6 @@
 
 .test {
     color: white;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
+    -webkit-text-stroke-width: 1.3px;
+    -webkit-text-stroke-color: rgb(2, 98, 2);
 }
