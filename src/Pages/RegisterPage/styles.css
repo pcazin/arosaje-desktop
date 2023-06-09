@@ -1,4 +1,4 @@
-#register {
+/* #register {
   height: 100%;
   width: 100%;
   display: flex;
@@ -9,7 +9,7 @@
   display: flex;
   flex-direction: column;
   margin-top: 25vh;
-}
+}*/
 
 h1 {
   margin: 0;
@@ -19,18 +19,12 @@ h1 {
   font-size: 80px;
 }
 
-#password, #username {
-  height: 35px;
-  padding-left: 10px;
+form {
+  display: flex;
+  flex-direction: column;
 }
 
-#username {
-  margin-top: 50px;
-}
-
-#password {
-  margin-top: 30px;
-}
+/*  
 
 #login-container a:first-of-type {
   margin-top: 15px;
@@ -49,3 +43,4 @@ button {
 button::first-letter {
   text-transform: uppercase;
 }
+ */
