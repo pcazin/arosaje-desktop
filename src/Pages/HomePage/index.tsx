@@ -5,10 +5,12 @@ import "./styles.css";
 import { useEffect, useState } from "react";
 import { PostProps } from "../../shared/PostProps.js";
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { PostContainer } from "./postContainer";
+import AuthService from "../../services/AuthService";
+import { useNavigate } from "react-router-dom";
 
 export default function HomePage() {
+
     const navigate = useNavigate();
 
     const [data, setData] = useState<PostProps[]>([]);
@@ -24,6 +26,7 @@ export default function HomePage() {
                 setPosts(getPostsFromData(newData))
             } catch (err) {
                 console.error(err);
+                AuthService.clearStorage();
                 navigate("/login");
             } finally {
                 setLoading(false);
@@ -33,29 +36,13 @@ export default function HomePage() {
         fetchData();
     }, []);
 
-    const postQueryFilter = (post: PostProps, query: string): boolean => {
-        if (
-            post?.name?.toLowerCase().includes(query) ||
-            post?.type?.toLowerCase().includes(query) ||
-            post?.user?.location?.toLowerCase().includes(query)
-        ) {
-            return true;
-        }
-
-        return false;
-    };
-
-    const getPostsFromData = (data: PostProps[]): React.ReactElement<typeof Post>[] => {
-        return data.map((post, index) => <Post data={post} key={index} />);
-    };
-
     const handleSearch = (query: string): void => {
         
-        // je retire les espaces et mets la query en minuscule
-        query = query.trim().toLowerCase()
-
         // j'affiche le chargement
         setLoading(true);
+
+        // je retire les espaces et mets la query en minuscule
+        query = query.trim().toLowerCase()
 
         // si la query est nulle, je garde tous les posts
         if(query === "") {
@@ -73,6 +60,31 @@ export default function HomePage() {
         // je retire le chargement
         setLoading(false);
     };
+
+    const getPostsFromData = (data: PostProps[]): React.ReactElement<typeof Post>[] => {
+        return data.map((post, index) => <Post data={post} key={index} />);
+    };
+
+    const postQueryFilter = (post: PostProps, query: string): boolean => {
+
+        if (post.user.username.toLowerCase().includes(query)) {
+            console.log(`NAME: *${post.name}* INCLUDE QUERY: *${query}*`)
+            return true;
+        }
+
+        if ( post.type?.toLowerCase().includes(query)) {
+            console.log(`TYPE: *${post.type}* INCLUDE QUERY: *${query}*`)
+            return true;
+        }
+
+        if (post.user?.location?.toLowerCase().includes(query)) {
+            console.log(`LOCATION: *${post.user?.location}* INCLUDE QUERY: *${query}*`)
+            return true;
+        }
+
+        return false;
+    };
+
 
     const dataToDisplay = (): React.ReactNode => {
         if (loading) {

@@ -3,8 +3,11 @@ import { PostProps } from "../../shared/PostProps";
 import AuthService from "../../services/AuthService";
 import { UserProps } from "../../shared/UserProps";
 import NoProfilePicture from "../../components/profil/NoProfilePicture";
+import { useNavigate } from "react-router-dom";
 
 export default function ProfilPage() {
+
+    const navigate = useNavigate();
     const [user, setUser] = useState<UserProps>();
 
     useEffect(() => {
@@ -12,7 +15,8 @@ export default function ProfilPage() {
             const user: UserProps | null = AuthService.getCurrentUser();
 
             if (!user) {
-                AuthService.logout();
+                AuthService.clearStorage();
+                navigate("/login")
                 return;
             } else {
                 setUser(user as UserProps);
