@@ -28,8 +28,14 @@ export default class AuthService {
             });
     }
 
-    static async register(username: string, password: string) {
-        const data = { username: username, password: password };
+    static async register(username: string, password: string, location: string, bio: string, profile_picture: string) {
+        const data = { 
+            username: username, 
+            password: password,
+            location: location,
+            bio: bio,
+            profile_picture: profile_picture
+        };
         const url = API_URL + "/user/signup";
 
         return axios
