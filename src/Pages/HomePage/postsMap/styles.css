@@ -1,0 +1,21 @@
+.leaflet-container {
+  height: 1000px;
+  width: 100%;
+  z-index: 0
+}
+
+.leaflet-popup-content {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 20px;
+  gap: 0px;
+  line-break: anywhere;
+}
+
+.leaflet-popup-content button {
+  font-size: 15px;
+  margin-top: 7px;
+  padding: 6px;
+}
+

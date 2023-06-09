@@ -57,7 +57,7 @@ const NewPlantPage: React.FC = () => {
     const [description, setDescription] = useState<string>("");
     const [imageUrl, setImageUrl] = useState<string>("");
     const [imagePreviewUrl, setImagePreviewUrl] = useState<string>("");
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const onSubmit = async (
         name: string,
@@ -65,23 +65,27 @@ const NewPlantPage: React.FC = () => {
         description: string,
         imageUrl: string
     ) => {
-        /* const data = {
-            name: "string",
-            type: "string",
-            description: "string",
-            latitude: "string",
-            longitude: "string",
-            photo: "string",
-            user_id: 0,
-        }; */
-        const latitude = "43.566700";
-        const longitude = "1.450200";
+        const location = generateRandomCoordinatesInFrance();
+        const latitude: string = location.latitude.toString();
+        const longitude: string = location.longitude.toString();
 
-        await PlanteService.newPlant(name, type, description, imageUrl, latitude, longitude).then((_res) => {
-            toast.success("Plante créée avec succès !")
-            navigate("/")
-        }
-        ).catch(alert)
+        await PlanteService.newPlant(
+            name,
+            type,
+            description,
+            imageUrl,
+            latitude,
+            longitude
+        )
+            .then((_res) => {
+                toast.success("Plante créée avec succès !");
+                navigate("/");
+            })
+            .catch((error) => {
+                console.error(error);
+                toast.error("Erreur de création ! Réessayez plus tard.");
+                navigate("/login");
+            });
     };
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -119,11 +123,28 @@ const NewPlantPage: React.FC = () => {
         setDescription(event.target.value);
     };
 
+    const generateRandomCoordinatesInFrance = (): {
+        latitude: number;
+        longitude: number;
+    } => {
+        // Bounds of France
+        const minLatitude = 41.333;
+        const maxLatitude = 51.124;
+        const minLongitude = -5.559;
+        const maxLongitude = 9.662;
+
+        // Generate random latitude and longitude within the bounds
+        const latitude =
+            Math.random() * (maxLatitude - minLatitude) + minLatitude;
+        const longitude =
+            Math.random() * (maxLongitude - minLongitude) + minLongitude;
+
+        return { latitude: latitude, longitude: longitude };
+    };
+
     return (
         <div className="p-6">
-            <h1 className="text-5xl">
-                Une de plus 
-            </h1>
+            <h1 className="text-5xl">Une de plus</h1>
             <form onSubmit={handleSubmit} className="space-y-6 mt-16">
                 <div className="flex flex-col">
                     <label

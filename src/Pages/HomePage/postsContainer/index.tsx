@@ -5,7 +5,14 @@ interface PostContainerProps {
   posts: React.ReactNode
 }
 
-const PostContainer = ({ posts }: PostContainerProps) => <div id="post-container">{posts}</div>;
+const PostContainer = ({ posts }: PostContainerProps) => {
+
+  console.log(posts)
+
+  return (
+    <div id="post-container">{posts}</div>
+  )
+};
 
 export { PostContainer };
 

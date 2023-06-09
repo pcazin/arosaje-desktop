@@ -11,6 +11,10 @@ export default function Header() {
     const navigate = useNavigate();
 
     const HandleNavigate = (path) => {
+        if(window.location.href === "http://localhost:3000/" && path === "/") {
+            window.location.href = "";
+            return;
+        } 
         navigate(path);
     };
 
