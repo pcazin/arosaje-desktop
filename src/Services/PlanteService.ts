@@ -7,6 +7,7 @@ import getHeaders from "./AuthHeader";
 const API_URL = "http://127.0.0.1:8000";
 
 export default class PlanteService {
+
     static async getFeed(): Promise<any> {
         return axios.get(API_URL + "/plants?skip=0&limit=100", getHeaders());
     }
@@ -25,9 +26,6 @@ export default class PlanteService {
             console.error("no current user found.");
             throw new Error("No user in getCurrentUser");
         }
-
-        console.log("user")
-        console.log(authService.getCurrentUser())
 
         const body = {
             name: nom,
@@ -84,5 +82,9 @@ export default class PlanteService {
                 },
             },
         });
+    }
+
+    static async getPlantById(plant_id: number): Promise<any> {
+        
     }
 }
