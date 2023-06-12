@@ -4,4 +4,6 @@
 
 ``npm install``
 
+``npx tailwindcss init``
+
  ``npm run start``
