@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from "axios";
-import { UserProps } from "../shared/UserProps";
+import { UserProps } from "../shared/interfaces";
 import getHeaders from "./AuthHeader";
 import { useNavigate } from "react-router-dom";
 

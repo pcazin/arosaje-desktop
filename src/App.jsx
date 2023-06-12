@@ -8,6 +8,7 @@ import RegisterPage from "./pages/RegisterPage";
 import ProfilPage from "./pages/ProfilPage";
 import PlantPage from "./pages/PlantPage";
 import NewPlantPage from "./pages/NewPlantPage";
+import UpdateProfil from "./pages/UpdateProfil";
 import ConversationsMenuPage from "./pages/ConversationsMenuPage";
 import ConversationsDetailsPage from "./pages/ConversationsDetailsPage/index";
 
@@ -29,6 +30,7 @@ function App() {
                         />
                         <Route path="/plant/:id" element={<PlantPage />} />
                         <Route path="/plant/new" element={<NewPlantPage />} />
+                        <Route path="/profil/update" element={<UpdateProfil />} />
                         <Route path="/profil" element={<ProfilPage />} />
                         <Route
                             path="/messages"

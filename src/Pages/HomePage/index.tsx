@@ -3,12 +3,12 @@ import SearchBar from "../../components/home/searchBar";
 import PlanteService from "../../services/PlanteService";
 import "./styles.css";
 import { useEffect, useState } from "react";
-import { PostProps } from "../../shared/PostProps.js";
+import { PostProps } from "../../shared/interfaces/index.js";
 import React from "react";
 import { PostContainer } from "./postsContainer";
 import AuthService from "../../services/AuthService";
 import { useNavigate } from "react-router-dom";
-import PostsMap from "./postsMap";
+import Map from "../../shared/components/Map";
 import MapButton from "./mapButton";
 
 export default function HomePage() {
@@ -111,11 +111,11 @@ export default function HomePage() {
         <div id="home">
             <MapButton toggleMap={toggleMap} isMapOpened={isMapOpened} />
             {isMapOpened ? (
-                <PostsMap posts={data}/>
+                <Map posts={data}/>
             ) : (
                 <>
-                    <h1 className="mt-12">
-                        Arosa<span className="green-h1">je</span>
+                    <h1 className="mt-12 m-0 text-center capitalize font-italiana">
+                        Arosa<span className="text-green-700">je</span>
                     </h1>
                     <SearchBar onSearch={handleSearch} />
                     <PostContainer posts={dataToDisplay()} />

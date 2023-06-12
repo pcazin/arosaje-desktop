@@ -144,7 +144,12 @@ const NewPlantPage: React.FC = () => {
 
     return (
         <div className="p-6">
-            <h1 className="text-5xl">Une de plus</h1>
+            <h1
+                className="font-italiana text-center"
+                style={{ fontSize: "50px" }}
+            >
+                Nouvelle plante
+            </h1>
             <form onSubmit={handleSubmit} className="space-y-6 mt-16">
                 <div className="flex flex-col">
                     <label

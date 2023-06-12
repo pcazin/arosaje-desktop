@@ -1,7 +1,7 @@
 import './styles.css';
 import { useNavigate } from 'react-router-dom';
 import React from "react";
-import { UserProps } from '../../../../shared/UserProps';
+import { UserProps } from '../../../../shared/interfaces';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 interface Props {

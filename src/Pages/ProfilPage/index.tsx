@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { PostProps } from "../../shared/PostProps";
+import { PostProps } from "../../shared/interfaces";
 import AuthService from "../../services/AuthService";
-import { UserProps } from "../../shared/UserProps";
+import { UserProps } from "../../shared/interfaces";
 import NoProfilePicture from "../../components/profil/NoProfilePicture";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import ProfilHeader from "../../shared/components/ProfilHeader";
+import ProfilButtons from "./profilButtons";
+import ProfilPosts from "./profilPosts";
 
 export default function ProfilPage() {
-
     const navigate = useNavigate();
     const [user, setUser] = useState<UserProps>();
 
@@ -16,7 +18,7 @@ export default function ProfilPage() {
 
             if (!user) {
                 AuthService.clearStorage();
-                navigate("/login")
+                navigate("/login");
                 return;
             } else {
                 setUser(user as UserProps);
@@ -28,14 +30,9 @@ export default function ProfilPage() {
 
     if (!user) return "loading";
 
-    console.log(user);
-
-    const getProfilePicture = () => {
-        console.log("ICICICICICI")
-        console.log(user.profile_picture);
-        if (!user.profile_picture) return <NoProfilePicture />;
-        return <img src={user.profile_picture} alt="sdd" />;
-    };
-
-    return <div id="profil-container">{getProfilePicture()}</div>;
+    return <div className="p-6">
+        <ProfilHeader user={user}/>
+        <ProfilButtons />
+        <ProfilPosts userId={user.id}/>
+    </div>;
 }

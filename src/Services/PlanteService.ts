@@ -1,7 +1,7 @@
 import axios from "axios";
 import authHeaders from "./AuthHeader";
 import authService from "./AuthService";
-import { UserProps } from "../shared/UserProps";
+import { PostProps, UserProps } from "../shared/interfaces";
 import getHeaders from "./AuthHeader";
 
 const API_URL = "http://127.0.0.1:8000";
@@ -85,6 +85,10 @@ export default class PlanteService {
     }
 
     static async getPlantById(plant_id: number): Promise<any> {
-        
+        return axios.get(API_URL + `/plant/${plant_id}`, getHeaders());
+    }
+
+    static async getPlantByUserId(userId: number): Promise<any> {
+        return axios.get(API_URL + `/plants/user/${userId}`, getHeaders());
     }
 }

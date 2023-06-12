@@ -29,3 +29,8 @@ button {
 .links {
   color: blue
 }
+
+.font-italiana {
+  font-family: 'Italiana', serif;
+  font-size: 80px;
+}

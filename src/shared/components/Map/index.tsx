@@ -1,5 +1,5 @@
 import React from "react";
-import { PostProps } from "../../../shared/PostProps";
+import { PostProps } from "../../interfaces";
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "./styles.css";
@@ -21,7 +21,7 @@ let DefaultIcon = L.icon({
 
 L.Marker.prototype.options.icon = DefaultIcon;
 
-export default function PostsMap({ posts }: PostsMapProps) {
+export default function Map({ posts }: PostsMapProps) {
 
   const navigate = useNavigate()
 

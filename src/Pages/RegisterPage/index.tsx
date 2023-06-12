@@ -64,7 +64,7 @@ export default function RegisterPage() {
 
     return (
         <div className="p-6">
-            <h1 className="text-5xl mt-12">Arosaje</h1>
+            <h1 className="mt-12 m-0 text-center capitalize font-italiana">Arosaje</h1>
             <form onSubmit={handleSubmit} className="space-y-6 mt-16">
                 <div className="flex flex-col">
                     <label
