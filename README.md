@@ -1,17 +1,7 @@
-# Assets
-## les images, le style partagé.
+# Arosaje 
 
-# Layouts
-## Les affichages disponibles pour tout le projet ( header, footer, etc).
+``git pull https://github.com/pcazin/arosaje-desktop``
 
-# Components
-## Les composants.
+``npm install``
 
-# Pages
-## Indique les routes de l'applcation.( peut avoir des sous dossiers).
-
-# Routes
-## Les routs privées, protégées, etc.
-
-# Services
-## les services.
+ ``npm run start``
