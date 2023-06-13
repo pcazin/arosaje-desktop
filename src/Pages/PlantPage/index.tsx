@@ -24,6 +24,7 @@ export default function PlantPage() {
                     setData(res.data);
                 })
                 .catch(() => {
+                    toast.error("Erreur chargement des données.")
                     AuthService.clearStorage();
                     navigate("/login");
                 })

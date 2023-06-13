@@ -41,7 +41,7 @@ export default function ProfilPageUser() {
     return (
         <div className="p-6">
             <ProfilHeader user={user} />
-            <ProfilPosts userId={user.id} redirectToUpdatePlant={false}/>
+            <ProfilPosts userId={user.id} />
         </div>
     );
 }

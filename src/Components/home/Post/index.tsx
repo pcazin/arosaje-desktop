@@ -9,28 +9,28 @@ import { useNavigate } from "react-router-dom";
 import { PostProps } from "../../../shared/interfaces";
 import React from "react";
 import PostName from "./PostName";
+import PostUpdateButton from "./PostUpdateButton";
 
 interface PostInterfaceProps {
     data: PostProps;
     hiddeProfilAndMessage?: boolean;
-    RedirectToUpdatePlant?: boolean;
+    showUpdateButton?: boolean;
 }
 
 export default function Post({
     data,
     hiddeProfilAndMessage,
-    RedirectToUpdatePlant
+    showUpdateButton
 }: PostInterfaceProps) {
     const navigate = useNavigate();
 
     const HandleClick = () => {
-        console.log("click")
-        if (RedirectToUpdatePlant) {
-            navigate(`/plant/update/${data.id}`);
-        } else {
-            navigate(`/plant/${data.id}`);
-        }
+        navigate(`/plant/${data.id}`);
     };
+
+    const HandleUpdateClick = () => {
+        navigate(`/plant/update/${data.id}`);
+    }
 
     return (
         <div className="post" onClick={HandleClick}>
@@ -46,6 +46,8 @@ export default function Post({
             ) : (
                 <PostName name={data.name} />
             )}
+
+            { showUpdateButton ? <PostUpdateButton id={data.id} /> : null}
         </div>
     );
 }
