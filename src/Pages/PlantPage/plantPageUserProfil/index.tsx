@@ -2,6 +2,7 @@ import React from 'react';
 import { PostProps } from '../../../shared/interfaces';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { useNavigate } from 'react-router-dom';
+import AuthService from '../../../services/AuthService';
 
 interface PlantPageUserProfilProps {
   user: PostProps["user"]
@@ -12,7 +13,12 @@ export default function PlantPageUserProfil({ user } : PlantPageUserProfilProps)
   const navigate = useNavigate()
 
   const handleProfilClick = () => {
-    navigate(`/profil/${user.username}`)
+    const myUserId = AuthService.getCurrentUser()?.id
+    if(myUserId === user.id) {
+      navigate("/profil")
+    } else {
+      navigate(`/profil/${user.id}`)
+    }
   }
 
   return (

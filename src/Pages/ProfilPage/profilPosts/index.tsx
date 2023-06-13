@@ -8,9 +8,10 @@ import { useNavigate } from "react-router-dom";
 
 interface ProfilPostsProps {
     userId: number;
+    redirectToUpdatePlant?: boolean;
 }
 
-export default function ProfilPosts({ userId }: ProfilPostsProps) {
+export default function ProfilPosts({ userId, redirectToUpdatePlant }: ProfilPostsProps) {
     const [data, setData] = useState<PostProps[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const navigate = useNavigate();
@@ -42,7 +43,7 @@ export default function ProfilPosts({ userId }: ProfilPostsProps) {
     }
 
     const posts: React.ReactElement<typeof Post>[] = data.map((post) => (
-        <Post data={post} hiddeProfilAndMessage={true} />
+        <Post data={post} hiddeProfilAndMessage={true} RedirectToUpdatePlant={redirectToUpdatePlant} />
     ));
 
     return <div className="mt-2 mb-28">

@@ -33,6 +33,6 @@ export default function ProfilPage() {
     return <div className="p-6">
         <ProfilHeader user={user}/>
         <ProfilButtons />
-        <ProfilPosts userId={user.id}/>
+        <ProfilPosts userId={user.id} redirectToUpdatePlant={true}/>
     </div>;
 }

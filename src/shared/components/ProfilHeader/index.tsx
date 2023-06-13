@@ -1,15 +1,26 @@
 import React from "react";
 import { UserProps } from "../../interfaces";
+import { divIcon } from "leaflet";
 
 interface ProfilHeaderProps {
     user: UserProps;
 }
 
 export default function ProfilHeader({ user }: ProfilHeaderProps) {
+    const defaultProfilPic = "https://img.freepik.com/free-icon/user_318-563642.jpg?w=360"
     return (
         <div className="p-6 flex flex-col">
             <div className="flex flex-row justify-start items-center">
-                <img src={user.profile_picture} alt="photo de profil" className="w-20 rounded-full"/>
+                <img
+                    src={
+                        user.profile_picture
+                            ? user.profile_picture
+                            : defaultProfilPic
+                    }
+                    alt="photo de profil"
+                    className="w-20 rounded-full"
+                />
+
                 <div className="flex flex-col ml-8 text-center">
                     <p className="font-bold">4</p>
                     <p className="font-medium">publications</p>

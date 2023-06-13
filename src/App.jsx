@@ -4,11 +4,13 @@ import toast, { Toaster } from "react-hot-toast";
 import PrivateRoutes from "./routes/PrivateRoutes";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
-import ProfilPage from "./pages/ProfilPage";
 import PlantPage from "./pages/PlantPage";
+import ProfilPage from "./pages/ProfilPage";
+import RegisterPage from "./pages/RegisterPage";
 import NewPlantPage from "./pages/NewPlantPage";
 import UpdateProfil from "./pages/UpdateProfil";
+import PlantUpdatePage from "./pages/PlantUpdatePage";
+import ProfilPageUser from "./pages/ProfilPageUser";
 import ConversationsMenuPage from "./pages/ConversationsMenuPage";
 import ConversationsDetailsPage from "./pages/ConversationsDetailsPage/index";
 
@@ -20,22 +22,14 @@ function App() {
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/register" element={<RegisterPage />} />
                     <Route element={<PrivateRoutes />}>
-                        <Route
-                            path="/messages/:username"
-                            element={<ConversationsDetailsPage />}
-                        />
-                        <Route
-                            path="/profil/:username"
-                            element={<ProfilPage />}
-                        />
+                        <Route path="/messages/:username" element={<ConversationsDetailsPage />} />
                         <Route path="/plant/:id" element={<PlantPage />} />
+                        <Route path="/plant/update/:id" element={<PlantUpdatePage />} />
                         <Route path="/plant/new" element={<NewPlantPage />} />
                         <Route path="/profil/update" element={<UpdateProfil />} />
+                        <Route path="/profil/:id" element={<ProfilPageUser />} />
                         <Route path="/profil" element={<ProfilPage />} />
-                        <Route
-                            path="/messages"
-                            element={<ConversationsMenuPage />}
-                        />
+                        <Route path="/messages" element={<ConversationsMenuPage />} />
                         <Route path="/" element={<HomePage />} />
                     </Route>
                 </Routes>

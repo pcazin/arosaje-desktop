@@ -13,16 +13,23 @@ import PostName from "./PostName";
 interface PostInterfaceProps {
     data: PostProps;
     hiddeProfilAndMessage?: boolean;
+    RedirectToUpdatePlant?: boolean;
 }
 
 export default function Post({
     data,
     hiddeProfilAndMessage,
+    RedirectToUpdatePlant
 }: PostInterfaceProps) {
     const navigate = useNavigate();
 
     const HandleClick = () => {
-        navigate(`/plant/${data.id}`);
+        console.log("click")
+        if (RedirectToUpdatePlant) {
+            navigate(`/plant/update/${data.id}`);
+        } else {
+            navigate(`/plant/${data.id}`);
+        }
     };
 
     return (
