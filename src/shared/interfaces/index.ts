@@ -9,6 +9,8 @@ interface PostProps {
     created_at: string;
     updated_at: null | string;
     user: UserProps;
+    comments: Comment[];
+    gardening_service: any;
 }
 
 interface UserProps {

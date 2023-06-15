@@ -10,6 +10,9 @@ interface PlantPageUserProfilProps {
 
 export default function PlantPageUserProfil({ user } : PlantPageUserProfilProps) {
 
+  console.log("PlantPageUserProfil")
+  console.log(user)
+
   const navigate = useNavigate()
 
   const handleProfilClick = () => {

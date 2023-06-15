@@ -48,7 +48,7 @@ export default function ProfilPosts({ userId, showUpdateButton }: ProfilPostsPro
 
     return <div className="mt-2 mb-28">
         <div className="flex justify-center">
-            <div className="w-4/5 h-px bg-slate-300 mb-8"></div>
+            <div className="w-80 h-px bg-slate-300 mb-8"></div>
         </div>
         {posts}
     </div>;

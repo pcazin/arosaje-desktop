@@ -20,6 +20,7 @@ export default function PlantPage() {
         const fetchData = async () => {
             await PlanteService.getPlantById(Number(id))
                 .then((res) => {
+                    console.log("res de getById ici")
                     console.log(res);
                     setData(res.data);
                 })

@@ -16,29 +16,29 @@ export default function RegisterPage() {
     const handlePasswordChange = (
         event: React.ChangeEvent<HTMLInputElement>
     ) => {
-        setPassword(event.target.value.slice(0, 15).toLowerCase());
+        setPassword(event.target.value.slice(0, 15));
     };
 
     const handleUsernameChange = (
         event: React.ChangeEvent<HTMLInputElement>
     ) => {
-        setUsername(event.target.value.slice(0, 15).toLowerCase());
+        setUsername(event.target.value.slice(0, 15).trim().toLowerCase());
     };
 
     const handleLocationChange = (
         event: React.ChangeEvent<HTMLInputElement>
     ) => {
-        setLocation(event.target.value.slice(0, 30).toLowerCase());
+        setLocation(event.target.value.slice(0, 30).trim().toLowerCase());
     };
 
     const handleBioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setBio(event.target.value.slice(0, 100).toLowerCase());
+        setBio(event.target.value.slice(0, 100).trim().toLowerCase());
     };
 
     const handleProfilPicture = (
         event: React.ChangeEvent<HTMLInputElement>
     ) => {
-        setProfilPicture(event.target.value);
+        setProfilPicture(event.target.value.trim().toLowerCase());
     };
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -64,7 +64,9 @@ export default function RegisterPage() {
 
     return (
         <div className="p-6">
-            <h1 className="mt-12 m-0 text-center capitalize font-italiana">Arosaje</h1>
+            <h1 className="mt-12 m-0 text-center capitalize font-italiana">
+                Arosaje
+            </h1>
             <form onSubmit={handleSubmit} className="space-y-6 mt-16">
                 <div className="flex flex-col">
                     <label

@@ -16,6 +16,9 @@ export default function ProfilPage() {
         const fetchData = async () => {
             const user: UserProps | null = AuthService.getCurrentUser();
 
+            console.log("user")
+            console.log(user)
+
             if (!user) {
                 AuthService.clearStorage();
                 navigate("/login");
@@ -28,7 +31,7 @@ export default function ProfilPage() {
         fetchData().catch(console.error);
     }, []);
 
-    if (!user) return "loading";
+    if (!user) return <p className="text-center">loading</p>;
 
     return <div className="p-6">
         <ProfilHeader user={user}/>

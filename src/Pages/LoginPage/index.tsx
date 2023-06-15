@@ -25,13 +25,13 @@ export default function LoginPage() {
     const handleUsernameChange = (
         event: React.ChangeEvent<HTMLInputElement>
     ) => {
-        setUsername(event?.target.value.slice(0, 15).toLowerCase());
+        setUsername(event?.target.value.slice(0, 15).toLowerCase().trim());
     };
 
     const handlePasswordChange = (
         event: React.ChangeEvent<HTMLInputElement>
     ) => {
-        setPassword(event?.target.value.slice(0, 15).toLowerCase());
+        setPassword(event?.target.value.slice(0, 15).trim());
     };
 
     return (

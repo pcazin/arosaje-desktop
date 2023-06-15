@@ -1,7 +1,6 @@
 - Conversations
-- Modification du profil
-- Modification d'un post
 - Responsive
 - Prendre en photo
 - Gardening service
-- ProfilOtherUser
+- commentaires
+- back office
