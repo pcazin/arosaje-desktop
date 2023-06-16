@@ -2,18 +2,20 @@ import { useNavigate, useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import PlanteService from "../../services/PlanteService";
 import AuthService from "../../services/AuthService";
-import { PostProps } from "../../shared/interfaces";
+import { CommentProps, PostProps } from "../../shared/interfaces";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { toast } from "react-hot-toast";
 import PlantPageUserProfil from "./plantPageUserProfil";
 import Map from "../../shared/components/Map";
 import NewCommentButton from "./newCommentButton";
+import Comment from "./comment";
 
 export default function PlantPage() {
     const navigate = useNavigate();
 
     const { id } = useParams();
     const [data, setData] = useState<PostProps>();
+    const [comments, setCommentsData] = useState<CommentProps[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [isMapOpened, setIsMapOpened] = useState<boolean>(false);
 
@@ -21,9 +23,8 @@ export default function PlantPage() {
         const fetchData = async () => {
             await PlanteService.getPlantById(Number(id))
                 .then((res) => {
-                    console.log("res de getById ici");
-                    console.log(res);
                     setData(res.data);
+                    setCommentsData(res.data.comments)
                 })
                 .catch(() => {
                     toast.error("Erreur chargement des données.");
@@ -38,9 +39,6 @@ export default function PlantPage() {
         fetchData();
     }, []);
 
-    console.log("plantPage");
-    console.log(data);
-
     const toggleMap = () => {
         setIsMapOpened((isMapOpened) => !isMapOpened);
     };
@@ -52,6 +50,16 @@ export default function PlantPage() {
     if (data === null) {
         return <p className="text-center">Erreur de chargement.</p>;
     }
+
+    const commentsJSX = comments.map(comment => (
+        <Comment
+            description={comment.description}
+            photo={comment.photo}
+            updated_at={comment.updated_at}
+            plant_id={comment.plant_id}
+            user_id={comment.user_id}
+        />
+    ));
 
     return (
         <div className="p-6">
@@ -65,8 +73,9 @@ export default function PlantPage() {
                     {isMapOpened ? "Fermer la carte" : "Voir sur la carte"}
                 </button>
             </div>
-                <Map posts={[data as PostProps]} isMapOpened={isMapOpened} />
-                {!isMapOpened && <>
+            <Map posts={[data as PostProps]} isMapOpened={isMapOpened} />
+            {!isMapOpened && (
+                <>
                     <p className="font-medium mb-2">
                         type de plante:
                         <span className="text-green-700">{data?.type}</span>
@@ -77,9 +86,14 @@ export default function PlantPage() {
                         className="rounded-md"
                         alt="plante"
                     />
-                    <NewCommentButton plantId={Number(data?.id)} userId={Number(data?.user.id)}/>
-                </>}
-          
+                    <p>Commentaires:</p>
+                    {commentsJSX}
+                    <NewCommentButton
+                        plantId={Number(data?.id)}
+                        userId={Number(data?.user.id)}
+                    />
+                </>
+            )}
         </div>
     );
 }

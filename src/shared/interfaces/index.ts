@@ -1,3 +1,12 @@
+interface CommentProps {
+    description: string;
+    photo: string;
+    updated_at: string;
+    plant_id: number;
+    user_id: number;
+    id?: number;
+}
+
 interface PostProps {
     name: string;
     type: string;
@@ -9,7 +18,7 @@ interface PostProps {
     created_at: string;
     updated_at: null | string;
     user: UserProps;
-    comments: Comment[];
+    comments: CommentProps[];
     gardening_service: any;
 }
 
@@ -24,4 +33,4 @@ interface UserProps {
     created_at: string;
 }
 
-export { PostProps, UserProps };
+export { PostProps, UserProps, CommentProps };

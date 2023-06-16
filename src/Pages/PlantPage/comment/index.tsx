@@ -1,13 +1,13 @@
 import React from "react";
+import { CommentProps } from "../../../shared/interfaces";
 
-interface CommentProps {
-    description: string;
-    photo: string;
-    updated_at: string;
-    plant_id: number;
-    user_id: number;
-}
-
-export default function Comment(comment: CommentProps) {
-    return <p>{comment.description}</p>;
+export default function Comment({
+    description,
+    photo,
+    updated_at,
+    plant_id,
+    user_id,
+}: CommentProps) {
+    console.log(`Comment ${plant_id} created`)
+    return <p>{description}</p>;
 }
