@@ -10,35 +10,41 @@ import { useNavigate } from "react-router-dom";
 
 interface PostsMapProps {
     posts: PostProps[];
+    isMapOpened: boolean;
 }
 
 let DefaultIcon = L.icon({
     iconUrl: icon,
     iconSize: [25, 41],
-    iconAnchor: [12,41],
+    iconAnchor: [12, 41],
     popupAnchor: [0, -20],
 });
 
 L.Marker.prototype.options.icon = DefaultIcon;
 
-export default function Map({ posts }: PostsMapProps) {
+export default function Map({ posts, isMapOpened = false }: PostsMapProps) {
+    const navigate = useNavigate();
 
-  const navigate = useNavigate()
-
-  const handlePopupButtonClick = (post: PostProps) => {
-    navigate(`/plant/${post.id}`)
-  }
+    const handlePopupButtonClick = (post: PostProps) => {
+        navigate(`/plant/${post.id}`);
+    };
 
     const markers = posts.map((post) => {
         return (
             <Marker position={[Number(post.latitude), Number(post.longitude)]}>
                 <Popup>
                     {post.user.username}
-                    <button onClick={() => handlePopupButtonClick(post)}>voir la plante</button>
+                    <button onClick={() => handlePopupButtonClick(post)}>
+                        voir la plante
+                    </button>
                 </Popup>
             </Marker>
         );
     });
+
+    if (!isMapOpened) {
+        return <></>;
+    }
 
     return (
         <MapContainer
@@ -54,5 +60,3 @@ export default function Map({ posts }: PostsMapProps) {
         </MapContainer>
     );
 }
-
-

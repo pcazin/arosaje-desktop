@@ -66,7 +66,8 @@ export default function UpdateProfil() {
             bio,
             location,
             profilPicture,
-            role
+            role,
+            password
         )
             .then((res) => {
                 console.log("new user");

@@ -10,6 +10,7 @@ import RegisterPage from "./pages/RegisterPage";
 import NewPlantPage from "./pages/NewPlantPage";
 import UpdateProfil from "./pages/UpdateProfil";
 import PlantUpdatePage from "./pages/PlantUpdatePage";
+import PlantAddCommentPage from "./pages/PlantAddCommentPage";
 import ProfilPageUser from "./pages/ProfilPageUser";
 import ConversationsMenuPage from "./pages/ConversationsMenuPage";
 import ConversationsDetailsPage from "./pages/ConversationsDetailsPage/index";
@@ -23,6 +24,7 @@ function App() {
                     <Route path="/register" element={<RegisterPage />} />
                     <Route element={<PrivateRoutes />}>
                         <Route path="/messages/:username" element={<ConversationsDetailsPage />} />
+                        <Route path="/plant/:plantId/comment/add/:userId" element={<PlantAddCommentPage />} />
                         <Route path="/plant/:id" element={<PlantPage />} />
                         <Route path="/plant/update/:id" element={<PlantUpdatePage />} />
                         <Route path="/plant/new" element={<NewPlantPage />} />

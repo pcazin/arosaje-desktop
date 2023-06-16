@@ -3,54 +3,6 @@ import PlanteService from "../../services/PlanteService";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
-/*export default function NewPlantPage() {
-
-    const [pictureAsPreview, setPictureAsPreview] = useState<string>();
-    const [pictureAsFile, setPictureAsFile] = useState()
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setPictureAsPreview(URL.createObjectURL(e.target.files[0]));
-        setPictureAsFile(e.target.files[0])
-    } 
-
-    const submit = () => {
-        const formData = new FormData();
-        formData.append("file", )
-    } 
- 
-    return (
-        <div className="flex flex-col h-full">
-            <p>Nouvelle plante</p>
-            <input type="file" onChange={handleChange} className="appearance-none" />
-            <img src={pictureAsPreview} /> 
-
-            <p>nom</p>
-            <input type="text" />
-            <p>type</p>
-            <input type="text" />
-
-            <p>type</p>
-            <textarea></textarea>
-
-            <button>submit</button>
-
- 
-        </div>
- 
-    );
-} */
-
-/* type Plant = {
-    name: string;
-    type: string;
-    description: string;
-    imageUrl: string;
-  };
-  
-  type NewPlantPageProps = {
-    onSubmit: (newPlant: Plant) => void;
-  };
-   */
 const NewPlantPage: React.FC = () => {
     const [name, setName] = useState<string>("");
     const [type, setType] = useState<string>("");
@@ -145,8 +97,8 @@ const NewPlantPage: React.FC = () => {
     return (
         <div className="p-6">
             <h1
-                className="font-italiana text-center"
-                style={{ fontSize: "50px" }}
+                className="mt-12 m-0 text-center capitalize font-italiana"
+                style={{ fontSize: "30px", fontWeight: "600" }}
             >
                 Nouvelle plante
             </h1>

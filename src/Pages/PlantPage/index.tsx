@@ -7,6 +7,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { toast } from "react-hot-toast";
 import PlantPageUserProfil from "./plantPageUserProfil";
 import Map from "../../shared/components/Map";
+import NewCommentButton from "./newCommentButton";
 
 export default function PlantPage() {
     const navigate = useNavigate();
@@ -20,12 +21,12 @@ export default function PlantPage() {
         const fetchData = async () => {
             await PlanteService.getPlantById(Number(id))
                 .then((res) => {
-                    console.log("res de getById ici")
+                    console.log("res de getById ici");
                     console.log(res);
                     setData(res.data);
                 })
                 .catch(() => {
-                    toast.error("Erreur chargement des données.")
+                    toast.error("Erreur chargement des données.");
                     AuthService.clearStorage();
                     navigate("/login");
                 })
@@ -36,6 +37,9 @@ export default function PlantPage() {
 
         fetchData();
     }, []);
+
+    console.log("plantPage");
+    console.log(data);
 
     const toggleMap = () => {
         setIsMapOpened((isMapOpened) => !isMapOpened);
@@ -61,10 +65,8 @@ export default function PlantPage() {
                     {isMapOpened ? "Fermer la carte" : "Voir sur la carte"}
                 </button>
             </div>
-            {isMapOpened ? (
-                <Map posts={[data as PostProps]} />
-            ) : (
-                <>
+                <Map posts={[data as PostProps]} isMapOpened={isMapOpened} />
+                {!isMapOpened && <>
                     <p className="font-medium mb-2">
                         type de plante:
                         <span className="text-green-700">{data?.type}</span>
@@ -75,8 +77,9 @@ export default function PlantPage() {
                         className="rounded-md"
                         alt="plante"
                     />
-                </>
-            )}
+                    <NewCommentButton plantId={Number(data?.id)} userId={Number(data?.user.id)}/>
+                </>}
+          
         </div>
     );
 }

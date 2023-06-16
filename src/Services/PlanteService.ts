@@ -93,4 +93,16 @@ export default class PlanteService {
     static async getPlantByUserId(userId: number): Promise<any> {
         return axios.get(API_URL + `/plants/user/${userId}`, getHeaders());
     }
+
+    static async newComment(description: string, photo: string, plantId: number, userId: number): Promise<any> {
+
+        const body = {
+            description: description,
+            photo: photo,
+            plant_id: plantId,
+            user_id: userId
+          }
+
+        return axios.post(API_URL + '/comments', body, getHeaders());
+    }
 }

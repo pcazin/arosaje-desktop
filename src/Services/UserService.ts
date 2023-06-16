@@ -10,14 +10,15 @@ class UserService {
     return axios.get(API_URL + `/user/${userId}`, getHeaders());
   }
 
-  updateUser(id: number, username: string, bio: string, location: string, profilPicture: string, role: string): Promise<any> {
+  updateUser(id: number, username: string, bio: string, location: string, profilPicture: string, role: string, password: string): Promise<any> {
 
     const body = {
       username: username,
       bio,
       location: location,
       profilPicture: profilPicture,
-      role: role
+      role: role,
+      password: password
     }
 
     return axios.put(API_URL + `/user/${id}`, body, getHeaders())

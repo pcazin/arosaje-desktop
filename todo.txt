@@ -4,3 +4,7 @@
 - Gardening service
 - commentaires
 - back office
+
+ez: 
+- afficher le bon nombre de publications / commentaires sur le profil.
+- dans update profil le switch botanniste est acrivé 

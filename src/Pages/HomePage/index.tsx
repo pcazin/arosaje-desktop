@@ -110,17 +110,16 @@ export default function HomePage() {
     return (
         <div id="home">
             <MapButton toggleMap={toggleMap} isMapOpened={isMapOpened} />
-            {isMapOpened ? (
-                <Map posts={data}/>
-            ) : (
-                <>
-                    <h1 className="mt-12 m-0 text-center capitalize font-italiana">
-                        Arosa<span className="text-green-700">je</span>
-                    </h1>
-                    <SearchBar onSearch={handleSearch} />
-                    <PostContainer posts={dataToDisplay()} />
-                </>
-            )}
+
+            <Map posts={data} isMapOpened={isMapOpened} />
+
+            {!isMapOpened ? <>
+                <h1 className="mt-12 m-0 text-center capitalize font-italiana">
+                    Arosa<span className="text-green-700">je</span>
+                </h1>
+                <SearchBar onSearch={handleSearch} />
+                <PostContainer posts={dataToDisplay()} />
+            </> : null}
         </div>
     );
 }
