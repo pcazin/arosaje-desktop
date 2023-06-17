@@ -27,8 +27,9 @@ export default function NewCommentButton({ plantId, userId }: NewCommentButtonPr
 
     return (
         <button
-            className="lowercase text-white p-2 rounded-md font-medium
-      bg-green-700" onClick={handleAddComment}
+            className="lowercase p-2 rounded-md font-medium border-solid border-2 border-green-700 
+          
+      " onClick={handleAddComment}
         >
             Ajouter un commentaire
         </button>

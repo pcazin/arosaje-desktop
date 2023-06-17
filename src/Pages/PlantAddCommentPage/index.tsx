@@ -97,7 +97,6 @@ export default function PlantAddCommentPage() {
                         type="text"
                         name="url"
                         id="url"
-                        required
                         value={imageUrl}
                         onChange={handleImageChange}
                         className="border border-gray-300 rounded-lg py-2 px-4 mb-2 focus:outline-none focus:ring focus:ring-green-700"

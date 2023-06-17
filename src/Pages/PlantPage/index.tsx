@@ -24,7 +24,7 @@ export default function PlantPage() {
             await PlanteService.getPlantById(Number(id))
                 .then((res) => {
                     setData(res.data);
-                    setCommentsData(res.data.comments)
+                    setCommentsData(res.data.comments);
                 })
                 .catch(() => {
                     toast.error("Erreur chargement des données.");
@@ -51,18 +51,18 @@ export default function PlantPage() {
         return <p className="text-center">Erreur de chargement.</p>;
     }
 
-    const commentsJSX = comments.map(comment => (
+    const commentsJSX = comments.map((comment) => (
         <Comment
             description={comment.description}
             photo={comment.photo}
             updated_at={comment.updated_at}
             plant_id={comment.plant_id}
-            user_id={comment.user_id}
+            user={comment.user}
         />
     ));
 
     return (
-        <div className="p-6">
+        <div className="p-6 pb-40">
             <div className="flex justify-between mb-4">
                 <PlantPageUserProfil user={data?.user as PostProps["user"]} />
                 <button
@@ -86,12 +86,18 @@ export default function PlantPage() {
                         className="rounded-md"
                         alt="plante"
                     />
-                    <p>Commentaires:</p>
-                    {commentsJSX}
+
+                    <div className="mt-4 flex justify-between items-baseline">
+                    <p className="font-medium">Commentaires:</p>
                     <NewCommentButton
                         plantId={Number(data?.id)}
                         userId={Number(data?.user.id)}
                     />
+                    </div>
+
+                
+
+                    {commentsJSX}
                 </>
             )}
         </div>

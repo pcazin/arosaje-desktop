@@ -3,7 +3,7 @@ interface CommentProps {
     photo: string;
     updated_at: string;
     plant_id: number;
-    user_id: number;
+    user: UserProps;
     id?: number;
 }
 
