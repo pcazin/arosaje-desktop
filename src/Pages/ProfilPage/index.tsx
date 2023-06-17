@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { PostProps } from "../../shared/interfaces";
 import AuthService from "../../services/AuthService";
 import { UserProps } from "../../shared/interfaces";
-import NoProfilePicture from "../../components/profil/NoProfilePicture";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ProfilHeader from "../../shared/components/ProfilHeader";
 import ProfilButtons from "./profilButtons";
 import ProfilPosts from "./profilPosts";
@@ -15,9 +13,6 @@ export default function ProfilPage() {
     useEffect(() => {
         const fetchData = async () => {
             const user: UserProps | null = AuthService.getCurrentUser();
-
-            console.log("user")
-            console.log(user)
 
             if (!user) {
                 AuthService.clearStorage();
@@ -32,6 +27,9 @@ export default function ProfilPage() {
     }, []);
 
     if (!user) return <p className="text-center">loading</p>;
+
+    console.log("user laaaa")
+    console.log(user)
 
     return <div className="p-6">
         <ProfilHeader user={user}/>

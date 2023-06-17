@@ -45,14 +45,8 @@ export default class PlanteService {
         });
     }
 
-    static async deletePlant(plant_id: number) {
-        const currentUser: null | UserProps = authService.getCurrentUser();
-
-        if (!currentUser) {
-            throw new Error("No user in getCurrentUser");
-        }
-
-        axios.delete(`${API_URL}/delete/${plant_id}`, getHeaders());
+    static async deletePlant(plantId: number) {
+        return axios.delete(`${API_URL}/plant/${plantId}`, getHeaders());
     }
 
     static async updatePlant(

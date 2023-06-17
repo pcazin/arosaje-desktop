@@ -1,10 +1,10 @@
-- Conversations
-- Responsive
-- Prendre en photo
-- Gardening service
-- commentaires
-- back office
+1 - Conversations
+4 - Responsive
+3 - Prendre en photo
+2 - Gardening service
+
 
 ez: 
 - afficher le bon nombre de publications / commentaires sur le profil.
-- dans update profil le switch botanniste est acrivé 
+- dans update profil le switch botanniste est activé
+

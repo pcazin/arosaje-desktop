@@ -9,10 +9,6 @@ interface SearchBarProps {
 export default function SearchBar({ onSearch }: SearchBarProps) {
     const [query, setQuery] = useState("");
 
-    const handleSearch = () => {
-        onSearch(query);
-    };
-
     const handleClear = () => {
         setQuery("");
         onSearch("");

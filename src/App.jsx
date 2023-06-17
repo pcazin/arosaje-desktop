@@ -23,7 +23,6 @@ function App() {
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/register" element={<RegisterPage />} />
                     <Route element={<PrivateRoutes />}>
-                        <Route path="/messages/:username" element={<ConversationsDetailsPage />} />
                         <Route path="/plant/:plantId/comment/add/:userId" element={<PlantAddCommentPage />} />
                         <Route path="/plant/:id" element={<PlantPage />} />
                         <Route path="/plant/update/:id" element={<PlantUpdatePage />} />
@@ -31,6 +30,7 @@ function App() {
                         <Route path="/profil/update" element={<UpdateProfil />} />
                         <Route path="/profil/:id" element={<ProfilPageUser />} />
                         <Route path="/profil" element={<ProfilPage />} />
+                        <Route path="/messages/:userId" element={<ConversationsDetailsPage />} />
                         <Route path="/messages" element={<ConversationsMenuPage />} />
                         <Route path="/" element={<HomePage />} />
                     </Route>

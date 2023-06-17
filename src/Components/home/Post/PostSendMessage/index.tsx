@@ -4,21 +4,21 @@ import { useNavigate } from 'react-router-dom';
 import React from 'react';
 
 interface Props {
-  username: string;
+  userId: number;
 }
 
-export default function PostSendMessage({username}: Props) {
+export default function PostSendMessage({userId}: Props) {
 
   const navigate = useNavigate()
 
   const HandleClick = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
-    navigate(`/messages/${username}`)
+    navigate(`/messages/${userId}`)
   }
 
   return (
     <div className="send-message" onClick={HandleClick}>
-      <img src={Send} alt="message" />
+      <img src={Send} alt="message" />cc
     </div>
   )
 }

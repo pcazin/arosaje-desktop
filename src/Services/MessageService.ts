@@ -1,39 +1,18 @@
 import axios from 'axios';
 import authHeader from './AuthHeader';
 import authService from './AuthService';
+import AuthService from './AuthService';
+import { UserProps } from '../shared/interfaces';
+import { toast } from 'react-hot-toast';
 
-const API_URL = 'http://localhost:8080/api/message/';
+const API_URL = 'http://localhost:8080';
 
-class MessageService {
+export default class MessageService {
   
-  /* getMessagesMenu() {
-    return axios.get(API_URL + 'menu', { headers: authHeader(), data: { body: authService.getCurrentUser()?.id ?? null } });
-  } */
-
-  /* getMessagesDetails() {
-    return axios.get(API_URL + 'details', { headers: authHeader(), data: { body: authService.getCurrentUser()?.id ?? null } });
-  } */
-
-  addMessage(message: string, receiver_id: string) {
-    return axios.post(API_URL + 'add', {
-      headers: authHeader(),
-      data: {
-        message: message,
-        user_id: authService.getCurrentUser()?.id ?? null,
-        receiver_id: receiver_id
-      }
-    });
+  static async getConversation(otherUserId: number, myUserId: number): Promise<any> {
+    
+    return axios.get(API_URL + `/conversation/${myUserId}/${otherUserId}`)
   }
-
-  /* deleteConversation(receiver_id: string) {
-    return axios.delete(API_URL + 'delete', {
-      headers: authHeader(),
-      data: {
-        user_id: authService.getCurrentUser()?.id ?? null,
-        receiver_id: receiver_id
-      }
-    });
-  } */
 }
 
-export default new MessageService();
+

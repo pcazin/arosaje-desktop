@@ -41,7 +41,7 @@ export default function Post({
                         profilPictureUrl={data.user.profile_picture}
                         user={data.user}
                     />
-                    <PostSendMessage username={data.user.username} />
+                    <PostSendMessage userId={data.user.id} />
                 </>
             ) : (
                 <PostName name={data.name} />
