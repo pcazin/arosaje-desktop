@@ -33,7 +33,7 @@ export default function PlantAddCommentPage() {
             return;
         }
 
-        if(user?.role !== "botaniste") {
+        if(user?.role !== "botanist") {
           toast.error("Vous devez être botaniste pour ajouter un commentaire sur ce poste.")
           return;
         }

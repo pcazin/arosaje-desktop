@@ -22,7 +22,7 @@ export default function Comment({
 
             <p className="text-justify">{description}</p>
             
-            <img className="rounded-md mt-1" src={photo} alt="photo de la plante" />
+            {photo ? <img className="rounded-md mt-1" src={photo} alt="photo de la plante" /> : null}
         </div>
     )
 }

@@ -51,7 +51,7 @@ export default function PlantPage() {
         return <p className="text-center">Erreur de chargement.</p>;
     }
 
-    const commentsJSX = comments.map((comment) => (
+    const commentsJSX = comments.slice().reverse().map((comment) => (
         <Comment
             description={comment.description}
             photo={comment.photo}

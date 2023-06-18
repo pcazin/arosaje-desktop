@@ -5,31 +5,36 @@ import { UserProps } from "../../../shared/interfaces";
 import toast from "react-hot-toast";
 
 interface NewCommentButtonProps {
-  plantId: number;
-  userId: number;
+    plantId: number;
+    userId: number;
 }
 
-export default function NewCommentButton({ plantId, userId }: NewCommentButtonProps) {
+export default function NewCommentButton({
+    plantId,
+    userId,
+}: NewCommentButtonProps) {
+    const navigate = useNavigate();
 
-  const navigate = useNavigate()
+    const handleAddComment = () => {
+        const user: UserProps | null = AuthService.getCurrentUser();
 
-  const handleAddComment = () => {
-    
-    const user: UserProps | null = AuthService.getCurrentUser();
-
-        if (!user || user.role !== "botaniste") {
+        if (!user || user.role !== "botanist") {
             AuthService.clearStorage();
-            toast.error("Vous devez être botaniste pour ajouter un commentaire sur ce poste.")
+            toast.error(
+                "Vous devez être botaniste pour ajouter un commentaire sur ce poste."
+            );
+            return;
         }
 
-    navigate(`/plant/${plantId}/comment/add/${userId}`)
-  }
+        navigate(`/plant/${plantId}/comment/add/${userId}`);
+    };
 
     return (
         <button
             className="lowercase p-2 rounded-md font-medium border-solid border-2 border-green-700 
           
-      " onClick={handleAddComment}
+      "
+            onClick={handleAddComment}
         >
             Ajouter un commentaire
         </button>
