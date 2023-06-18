@@ -6,10 +6,12 @@ import PostComments from "./PostComments";
 import PostSendMessage from "./PostSendMessage";
 import PostShowComments from "./PostShowComments";
 import { useNavigate } from "react-router-dom";
-import { PostProps } from "../../../shared/interfaces";
+import { PostProps, UserProps } from "../../../shared/interfaces";
 import React from "react";
 import PostName from "./PostName";
 import PostUpdateButton from "./PostUpdateButton";
+import AuthService from "../../../services/AuthService";
+import { toast } from "react-hot-toast";
 
 interface PostInterfaceProps {
     data: PostProps;
@@ -32,6 +34,15 @@ export default function Post({
         navigate(`/plant/update/${data.id}`);
     }
 
+    const user: UserProps | null = AuthService.getCurrentUser();
+
+    if(!user) {
+        navigate("/login");
+        return null;
+    }
+
+    const myUserId = user.id;
+
     return (
         <div className="post" onClick={HandleClick}>
             <PostImage postPictureUrl={data.photo} />
@@ -41,7 +52,7 @@ export default function Post({
                         profilPictureUrl={data.user.profile_picture}
                         user={data.user}
                     />
-                    <PostSendMessage userId={data.user.id} />
+                    {data.user.id !== myUserId ? <PostSendMessage userId={data.user.id} /> : null}
                 </>
             ) : (
                 <PostName name={data.name} />

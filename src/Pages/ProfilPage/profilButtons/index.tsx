@@ -19,7 +19,6 @@ export default function ProfilButtons() {
     };
 
     return (
-        // conteneur principal prends 100%
         <div className="w-100 flex justify-center mb-6">
             <div className="flex flex-col w-64 gap-2">
                 <div className="flex flex-row justify-between w-100">

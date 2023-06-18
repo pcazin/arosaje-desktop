@@ -18,7 +18,7 @@ export default function PostSendMessage({userId}: Props) {
 
   return (
     <div className="send-message" onClick={HandleClick}>
-      <img src={Send} alt="message" />cc
+      <img src={Send} alt="message" />
     </div>
   )
 }

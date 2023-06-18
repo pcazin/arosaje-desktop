@@ -24,8 +24,6 @@ export default function PlantAddCommentPage() {
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        // todo verifier si je suis botaniste
-
         const user: UserProps | null = AuthService.getCurrentUser();
 
         if (!user) {
@@ -44,7 +42,7 @@ export default function PlantAddCommentPage() {
             description,
             imageUrl,
             Number(plantId),
-            Number(userId)
+            Number(user.id)
         )
             .then((res) => {
                 console.log(res);

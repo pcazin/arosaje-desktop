@@ -6,5 +6,8 @@
 
 ez: 
 - afficher le bon nombre de publications / commentaires sur le profil.
-- dans update profil le switch botanniste est activé
+- Afficher les plantes qui sont gardées.
+- ajouter le mdp par defaut dans le update profil
+- impossible de mettre un espace dans la bio du register.
+
 

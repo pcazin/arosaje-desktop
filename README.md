@@ -1,6 +1,6 @@
 # Arosaje 
 
-``git pull https://github.com/pcazin/arosaje-desktop``
+``git clone https://github.com/pcazin/arosaje-desktop``
 
 ``npm install``
 
