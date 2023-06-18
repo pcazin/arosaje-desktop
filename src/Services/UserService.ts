@@ -4,13 +4,13 @@ import getHeaders from './AuthHeader';
 
 const API_URL = 'http://127.0.0.1:8000';
 
-class UserService {
+export default class UserService {
 
-  getUserById(userId: number): Promise<any> {
+  static async getUserById(userId: number): Promise<any> {
     return axios.get(API_URL + `/user/${userId}`, getHeaders());
   }
 
-  updateUser(id: number, username: string, bio: string, location: string, profilPicture: string, role: string, password: string): Promise<any> {
+  static async updateUser(id: number, username: string, bio: string, location: string, profilPicture: string, role: string, password: string): Promise<any> {
 
     const body = {
       username: username,
@@ -25,5 +25,3 @@ class UserService {
   }
 
 }
-
-export default new UserService();

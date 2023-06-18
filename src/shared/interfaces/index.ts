@@ -20,6 +20,8 @@ interface PostProps {
     user: UserProps;
     comments: CommentProps[];
     gardening_service: any;
+    propal_end: string;
+    propal_start: string;
 }
 
 interface UserProps {

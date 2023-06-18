@@ -16,7 +16,6 @@ export default function UpdateProfil() {
     const [profilPicture, setProfilPicture] = useState("");
 
     const [toggle, setToggle] = useState(false);
-    const role = toggle ? "botaniste" : "utilisateur";
 
     const [isLoading, setIsLoading] = useState(true);
 
@@ -39,13 +38,13 @@ export default function UpdateProfil() {
     };
 
     const handleBioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setBio(event.target.value.slice(0, 100).trim().toLowerCase());
+        setBio(event.target.value.slice(0, 100));
     };
 
     const handleProfilPicture = (
         event: React.ChangeEvent<HTMLInputElement>
     ) => {
-        setProfilPicture(event.target.value.trim().toLowerCase());
+        setProfilPicture(event.target.value);
     };
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -66,7 +65,7 @@ export default function UpdateProfil() {
             bio,
             location,
             profilPicture,
-            role,
+            toggle ? "botanist" : "user",
             password
         )
             .then((res) => {
@@ -99,7 +98,7 @@ export default function UpdateProfil() {
                 setUsername(user.username);
                 setLocation(user.location);
                 setProfilPicture(user.profile_picture);
-                setToggle(user.role === "utilisateur" ? false : true);
+                setToggle(user.role === "user" ? false : true);
                 setIsLoading(false);
             }
         };
@@ -132,26 +131,6 @@ export default function UpdateProfil() {
                         onChange={handleUsernameChange}
                         className="border border-gray-300 rounded-lg py-2 px-4 mb-2 focus:outline-none focus:ring focus:ring-green-700"
                         autoComplete="off"
-                    />
-                </div>
-
-                <div className="flex flex-col">
-                    <label
-                        htmlFor="password"
-                        className="text-sm font-medium text-gray-700 mb-2"
-                    >
-                        Mot de passe
-                    </label>
-                    <input
-                        type="password"
-                        name="password"
-                        id="password"
-                        required
-                        value={password}
-                        onChange={handlePasswordChange}
-                        className="border border-gray-300 rounded-lg py-2 px-4 mb-2 focus:outline-none focus:ring focus:ring-green-700"
-                        autoComplete="off"
-                        placeholder="********"
                     />
                 </div>
 
@@ -229,6 +208,26 @@ export default function UpdateProfil() {
                             }`}
                         ></span>
                     </button>
+                </div>
+
+                <div className="flex flex-col">
+                    <label
+                        htmlFor="password"
+                        className="text-sm font-medium text-gray-700 mb-2"
+                    >
+                        Mot de passe
+                    </label>
+                    <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        required
+                        value={password}
+                        onChange={handlePasswordChange}
+                        className="border border-gray-300 rounded-lg py-2 px-4 mb-2 focus:outline-none focus:ring focus:ring-green-700"
+                        autoComplete="off"
+                        placeholder="********"
+                    />
                 </div>
 
                 <button

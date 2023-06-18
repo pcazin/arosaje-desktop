@@ -87,15 +87,19 @@ export default function PlantPage() {
                         alt="plante"
                     />
 
-                    <div className="mt-4 flex justify-between items-baseline">
-                    <p className="font-medium">Commentaires:</p>
-                    <NewCommentButton
-                        plantId={Number(data?.id)}
-                        userId={Number(data?.user.id)}
-                    />
-                    </div>
+                    <p className="text-center text-green-700 font-medium mt-2">
+                        {data?.gardening_service !== null
+                            ? `Plante actuellement gardée par ${data?.gardening_service.user.username}`
+                            : null}
+                    </p>
 
-                
+                    <div className="mt-4 flex justify-between items-baseline">
+                        <p className="font-medium">Commentaires:</p>
+                        <NewCommentButton
+                            plantId={Number(data?.id)}
+                            userId={Number(data?.user.id)}
+                        />
+                    </div>
 
                     {commentsJSX}
                 </>

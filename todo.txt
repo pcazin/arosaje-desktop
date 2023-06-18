@@ -1,13 +1,8 @@
-1 - Conversations
-4 - Responsive
-3 - Prendre en photo
-2 - Gardening service
 
+2 - Responsive
+1 - Prendre en photo
 
-ez: 
 - afficher le bon nombre de publications / commentaires sur le profil.
 - Afficher les plantes qui sont gardées.
-- ajouter le mdp par defaut dans le update profil
-- impossible de mettre un espace dans la bio du register.
 
 

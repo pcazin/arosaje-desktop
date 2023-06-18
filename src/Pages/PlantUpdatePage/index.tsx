@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import PlanteService from "../../services/PlanteService";
-import { PostProps } from "../../shared/interfaces";
 import AuthService from "../../services/AuthService";
 import { toast } from "react-hot-toast";
+import AddIcon from "@mui/icons-material/Add";
 
 export default function PlantUpdatePage() {
     const { id } = useParams();
@@ -18,6 +18,8 @@ export default function PlantUpdatePage() {
     const [latitude, setLatitude] = useState<string>("");
     const [longitude, setLongitude] = useState<string>("");
     const [showModalDelete, setShowModalDelete] = useState<boolean>(false);
+    const [showModalNewService, setShowModalNewService] = useState<boolean>(false);
+    const [guardening, setGuardening] = useState();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -30,6 +32,7 @@ export default function PlantUpdatePage() {
                     setImageUrl(res.data.photo);
                     setLatitude(res.data.latitude);
                     setLongitude(res.data.longitude);
+                    setGuardening(res.data.gardening_service);
                 })
                 .catch(() => {
                     toast.error("Erreur chargement des données.");
@@ -48,22 +51,22 @@ export default function PlantUpdatePage() {
         event.preventDefault();
 
         PlanteService.deletePlant(Number(id))
-        .then(() => {
-            toast.success("Plante supprimée.")
-            navigate("/profil")
-        })
-        .catch(() => {
-            toast.error("Erreur, veuillez réessayer plus tard.")
-        })
-        .finally(() => {
-            setShowModalDelete(false);
-        })
-    }
+            .then(() => {
+                toast.success("Plante supprimée.");
+                navigate("/profil");
+            })
+            .catch(() => {
+                toast.error("Erreur, veuillez réessayer plus tard.");
+            })
+            .finally(() => {
+                setShowModalDelete(false);
+            });
+    };
 
     const RefuseDelete = (event: React.MouseEvent<HTMLElement>) => {
         event.preventDefault();
         setShowModalDelete(false);
-    }
+    };
 
     const onSubmit = async (
         name: string,
@@ -137,6 +140,31 @@ export default function PlantUpdatePage() {
     if (isLoading)
         return <p className="text-center">Chargement des données.</p>;
 
+    if (showModalDelete) {
+        return (
+            <div className="flex flex-col items-center gap-y-4 py-2 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white w-60">
+                <p className="text-center">
+                    Etes vous sur de vouloir supprimer cette plante ?
+                </p>
+
+                <div className="flex gap-2">
+                    <button
+                        onClick={ValidateDelete}
+                        className="bg-red-700 text-white rounded-lg py-2 px-4 text-sm font-medium focus:outline-none focus:ring"
+                    >
+                        Supprimer
+                    </button>
+                    <button
+                        onClick={RefuseDelete}
+                        className="bg-green-700 text-white rounded-lg py-2 px-4 text-sm font-medium focus:outline-none focus:ring"
+                    >
+                        Retour
+                    </button>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div className="p-6 relative min-h-screen">
             <h1
@@ -146,64 +174,63 @@ export default function PlantUpdatePage() {
                 Modifier une plante
             </h1>
 
-            {!showModalDelete && (
-                <form onSubmit={handleSubmit} className="space-y-6 mt-16">
-                    <div className="flex flex-col">
-                        <label
-                            htmlFor="nom"
-                            className="text-sm font-medium text-gray-700 mb-2"
-                        >
-                            Nom
-                        </label>
-                        <input
-                            type="text"
-                            name="nom"
-                            id="nom"
-                            required
-                            value={name}
-                            onChange={handleNameChange}
-                            className="border border-gray-300 rounded-lg py-2 px-4 mb-2 focus:outline-none focus:ring focus:ring-green-700"
-                            autoComplete="off"
-                        />
-                    </div>
-                    <div className="flex flex-col">
-                        <label
-                            htmlFor="type"
-                            className="text-sm font-medium text-gray-700 mb-2"
-                        >
-                            Type
-                        </label>
-                        <input
-                            type="text"
-                            name="type"
-                            id="type"
-                            required
-                            value={type}
-                            onChange={handleTypeChange}
-                            className="border border-gray-300 rounded-lg py-2 px-4 mb-2 focus:outline-none focus:ring focus:ring-green-700"
-                            autoComplete="off"
-                        />
-                    </div>
-                    <div className="flex flex-col">
-                        <label
-                            htmlFor="description"
-                            className="text-sm font-medium text-gray-700 mb-2"
-                        >
-                            Description
-                        </label>
-                        <textarea
-                            name="description"
-                            id="description"
-                            rows={3}
-                            required
-                            value={description}
-                            onChange={handleDescriptionChange}
-                            className="border border-gray-300 rounded-lg py-2 px-4 mb-2 focus:outline-none focus:ring focus:ring-green-700"
-                            autoComplete="off"
-                        ></textarea>
-                    </div>
-                    <div className="flex flex-col">
-                        {/* <label
+            <form onSubmit={handleSubmit} className="space-y-6 mt-6">
+                <div className="flex flex-col">
+                    <label
+                        htmlFor="nom"
+                        className="text-sm font-medium text-gray-700 mb-2"
+                    >
+                        Nom
+                    </label>
+                    <input
+                        type="text"
+                        name="nom"
+                        id="nom"
+                        required
+                        value={name}
+                        onChange={handleNameChange}
+                        className="border border-gray-300 rounded-lg py-2 px-4 mb-2 focus:outline-none focus:ring focus:ring-green-700"
+                        autoComplete="off"
+                    />
+                </div>
+                <div className="flex flex-col">
+                    <label
+                        htmlFor="type"
+                        className="text-sm font-medium text-gray-700 mb-2"
+                    >
+                        Type
+                    </label>
+                    <input
+                        type="text"
+                        name="type"
+                        id="type"
+                        required
+                        value={type}
+                        onChange={handleTypeChange}
+                        className="border border-gray-300 rounded-lg py-2 px-4 mb-2 focus:outline-none focus:ring focus:ring-green-700"
+                        autoComplete="off"
+                    />
+                </div>
+                <div className="flex flex-col">
+                    <label
+                        htmlFor="description"
+                        className="text-sm font-medium text-gray-700 mb-2"
+                    >
+                        Description
+                    </label>
+                    <textarea
+                        name="description"
+                        id="description"
+                        rows={3}
+                        required
+                        value={description}
+                        onChange={handleDescriptionChange}
+                        className="border border-gray-300 rounded-lg py-2 px-4 mb-2 focus:outline-none focus:ring focus:ring-green-700"
+                        autoComplete="off"
+                    ></textarea>
+                </div>
+                <div className="flex flex-col">
+                    {/* <label
           htmlFor="image"
           className="text-sm font-medium text-gray-700 mb-2"
         >
@@ -218,63 +245,45 @@ export default function PlantUpdatePage() {
           onChange={handleImageChange}
           className="py-2 px-4 mb-2 focus:outline-none focus:ring focus:ring-green-500"
         /> */}
-                        <label
-                            htmlFor="nom"
-                            className="text-sm font-medium text-gray-700 mb-2"
-                        >
-                            url de l'image en attendant
-                        </label>
-                        <input
-                            type="text"
-                            name="url"
-                            id="url"
-                            required
-                            value={imageUrl}
-                            onChange={handleImageChange}
-                            className="border border-gray-300 rounded-lg py-2 px-4 mb-2 focus:outline-none focus:ring focus:ring-green-700"
-                        />
-                    </div>
-                    {imagePreviewUrl && (
-                        <img
-                            src={imagePreviewUrl}
-                            alt="Plant preview"
-                            className="w-32"
-                        />
-                    )}
-                    <div className="flex justify-center gap-x-6">
-                        <button
-                            type="submit"
-                            className="bg-green-700 text-white rounded-lg py-2 px-4 text-sm font-medium focus:outline-none focus:ring focus:ring-green-700"
-                        >
-                            Submit
-                        </button>
-
-                        <button
-                            onClick={handleDelete}
-                            className="bg-red-700 text-white rounded-lg py-2 px-4 text-sm font-medium focus:outline-none focus:ring focus:ring-green-700"
-                        >
-                            Supprimer
-                        </button>
-                    </div>
-                </form>
-            )}
-
-            {showModalDelete && (
-                <div className="flex flex-col items-center gap-y-4 py-2 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white w-60">
-                    <p className="text-center">
-                        Etes vous sur de vouloir supprimer cette plante ?
-                    </p>
-
-                    <div className="flex gap-2">
-                        <button onClick={ValidateDelete} className="bg-red-700 text-white rounded-lg py-2 px-4 text-sm font-medium focus:outline-none focus:ring">
-                            Supprimer
-                        </button>
-                        <button onClick={RefuseDelete} className="bg-green-700 text-white rounded-lg py-2 px-4 text-sm font-medium focus:outline-none focus:ring">
-                            Retour
-                        </button>
-                    </div>
+                    <label
+                        htmlFor="nom"
+                        className="text-sm font-medium text-gray-700 mb-2"
+                    >
+                        url de l'image en attendant
+                    </label>
+                    <input
+                        type="text"
+                        name="url"
+                        id="url"
+                        required
+                        value={imageUrl}
+                        onChange={handleImageChange}
+                        className="border border-gray-300 rounded-lg py-2 px-4 mb-2 focus:outline-none focus:ring focus:ring-green-700"
+                    />
                 </div>
-            )}
+                {imagePreviewUrl && (
+                    <img
+                        src={imagePreviewUrl}
+                        alt="Plant preview"
+                        className="w-32"
+                    />
+                )}
+                <div className="flex justify-center gap-x-6">
+                    <button
+                        type="submit"
+                        className="bg-green-700 text-white rounded-lg py-2 px-4 text-sm font-medium focus:outline-none focus:ring focus:ring-green-700"
+                    >
+                        Submit
+                    </button>
+
+                    <button
+                        onClick={handleDelete}
+                        className="bg-red-700 text-white rounded-lg py-2 px-4 text-sm font-medium focus:outline-none focus:ring focus:ring-green-700"
+                    >
+                        Supprimer
+                    </button>
+                </div>
+            </form>
         </div>
     );
 }

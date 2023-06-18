@@ -32,13 +32,13 @@ export default function RegisterPage() {
     };
 
     const handleBioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setBio(event.target.value.slice(0, 100).trim().toLowerCase());
+        setBio(event.target.value.slice(0, 100));
     };
 
     const handleProfilPicture = (
         event: React.ChangeEvent<HTMLInputElement>
     ) => {
-        setProfilPicture(event.target.value.trim().toLowerCase());
+        setProfilPicture(event.target.value);
     };
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
