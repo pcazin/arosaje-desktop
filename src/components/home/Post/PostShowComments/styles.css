@@ -1,0 +1,41 @@
+.post-open-comments {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  transition: all 0.2s linear;
+  background-color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  cursor: pointer;
+
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.post-open-comments:hover {
+  transform: scale(1.05);
+}
+
+.chevron-wrapper {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(-90deg);
+  transition: all 0.2s linear;
+  user-select: none;
+}
+
+.chevron {
+  width: 100%;
+  -webkit-user-drag: none;
+}
+
+.rotate {
+  transform: rotate(-90deg) rotateY(180deg);
+} 
+

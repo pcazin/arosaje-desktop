@@ -1,0 +1,50 @@
+.profil {
+  height: 55px;
+  display: flex;
+  background: white;
+  border-radius: 15px;
+  padding-right: 10px;
+  padding-left: 2px;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  text-transform: capitalize;
+  width: fit-content;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.profil img {
+  height: 93%;
+  width: 50px;
+  position: relative;
+  left: 0;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border-top-right-radius: 10px;
+}
+
+.profil-info-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.profil-info-container p {
+  text-align: left;
+  font-family: 'Roboto', sans-serif;
+}
+
+.profil-info-container p:first-child {
+  font-weight: 700;
+  color: black;
+}
+
+.profil-info-container p:last-child {
+  font-weight: 400;
+  text-transform: lowercase;
+  color: grey;
+}
+

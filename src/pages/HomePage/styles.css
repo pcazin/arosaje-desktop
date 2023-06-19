@@ -1,0 +1,19 @@
+#home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#post-container {
+ display: flex;
+ flex-direction: column;
+ width: 90%;
+ position: relative;
+ z-index: 0; 
+}
+
+#post-container:last-child {
+    margin-bottom: 85px;
+}
+
+
