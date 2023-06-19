@@ -3,7 +3,8 @@ import { UserProps } from "../shared/interfaces";
 import getHeaders from "./AuthHeader";
 import { useNavigate } from "react-router-dom";
 
-const API_URL = "http://localhost:8000";
+/* const API_URL = "http://localhost:8000"; */
+const API_URL = "http://192.168.1.18:8000";
 
 export default class AuthService {
     static async login(username: string, password: string) {
@@ -19,6 +20,14 @@ export default class AuthService {
 
                 localStorage.setItem("token", JSON.parse(token));
                 localStorage.setItem("user", user);
+                localStorage.setItem(
+                    "counts",
+                    JSON.stringify({
+                        plants: response.data.plants.length as any,
+                        comments: response.data.comments.length,
+                        gardening_services: response.data.gardening_services.length
+                    })
+                );
 
                 return response.data;
             })
@@ -28,13 +37,19 @@ export default class AuthService {
             });
     }
 
-    static async register(username: string, password: string, location: string, bio: string, profile_picture: string) {
-        const data = { 
-            username: username, 
+    static async register(
+        username: string,
+        password: string,
+        location: string,
+        bio: string,
+        profile_picture: string
+    ) {
+        const data = {
+            username: username,
             password: password,
             location: location,
             bio: bio,
-            profile_picture: profile_picture
+            profile_picture: profile_picture,
         };
         const url = API_URL + "/user/signup";
 
@@ -48,6 +63,14 @@ export default class AuthService {
                 localStorage.setItem(
                     "user",
                     JSON.stringify(response.data.user)
+                );
+                localStorage.setItem(
+                    "counts",
+                    JSON.stringify({
+                        plants: response.data.plants.length as any,
+                        comments: response.data.comments.length,
+                        gardening_services: response.data.gardening_services.length
+                    })
                 );
                 return response.data;
             })

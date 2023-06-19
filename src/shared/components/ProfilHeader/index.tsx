@@ -22,11 +22,16 @@ export default function ProfilHeader({ user }: ProfilHeaderProps) {
                 />
 
                 <div className="flex flex-col ml-8 text-center">
-                    <p className="font-bold">4</p>
+                    <p className="font-bold">
+                        {localStorage.getItem("counts") !== null ? JSON.parse(localStorage.getItem("counts") as string).plants : 0}
+                    </p>
                     <p className="font-medium">publications</p>
                 </div>
                 <div className="flex flex-col text-center ml-6">
-                    <p className="font-bold">2</p>
+                    <p className="font-bold">
+                    {localStorage.getItem("counts") !== null ? JSON.parse(localStorage.getItem("counts") as string).comments : 0}
+
+                    </p>
                     <p className="font-medium">commentaires</p>
                 </div>
             </div>

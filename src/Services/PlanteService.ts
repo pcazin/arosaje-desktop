@@ -5,7 +5,8 @@ import { PostProps, UserProps } from "../shared/interfaces";
 import getHeaders from "./AuthHeader";
 import { promises } from "dns";
 
-const API_URL = "http://127.0.0.1:8000";
+/* const API_URL = "http://127.0.0.1:8000"; */
+const API_URL = "http://192.168.1.18:8000";
 
 export default class PlanteService {
     static async getFeed(): Promise<any> {
