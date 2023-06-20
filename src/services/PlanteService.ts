@@ -5,8 +5,7 @@ import { PostProps, UserProps } from "../shared/interfaces";
 import getHeaders from "./AuthHeader";
 import { promises } from "dns";
 
-/* const API_URL = "http://127.0.0.1:8000"; */
-const API_URL = "http://192.168.1.18:8000";
+const API_URL = "http://127.0.0.1:8000";
 
 export default class PlanteService {
     static async getFeed(): Promise<any> {
@@ -17,7 +16,7 @@ export default class PlanteService {
         nom: string,
         type: string,
         description: string,
-        photo: FormData,
+        photo: string,
         latitude: string,
         longitude: string
     ): Promise<any> {
@@ -38,7 +37,12 @@ export default class PlanteService {
             user_id: currentUser.id,
         };
 
-        return axios.post(API_URL + "/plants", body, getHeadersformData());
+        return axios.post(API_URL + "/plants", body, {
+            headers: {
+                Authorization: ("Bearer " +
+                    localStorage.getItem("token")) as string,
+            },
+        });
     }
 
     static async deletePlant(plantId: number) {

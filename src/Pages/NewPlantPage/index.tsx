@@ -9,32 +9,23 @@ const NewPlantPage: React.FC = () => {
     const [description, setDescription] = useState<string>("");
     const [imageUrl, setImageUrl] = useState<string>("");
     const [imagePreviewUrl, setImagePreviewUrl] = useState<string>("");
-    const [imageFile, setImageFile] = useState<File | null>(null);
     const navigate = useNavigate();
 
-    const onSubmit = (
+    const onSubmit = async (
         name: string,
         type: string,
         description: string,
-        imageFile: File | null
+        imageUrl: string
     ) => {
-        if (!imageFile) {
-            toast.error("Please select an image");
-            return;
-        }
-
-        let formData = new FormData();
-        formData.append("image", imageFile, imageFile.name)
-
         const location = generateRandomCoordinatesInFrance();
         const latitude: string = location.latitude.toString();
         const longitude: string = location.longitude.toString();
 
-        PlanteService.newPlant(
+        await PlanteService.newPlant(
             name,
             type,
             description,
-            formData,
+            imageUrl,
             latitude,
             longitude
         )
@@ -51,26 +42,23 @@ const NewPlantPage: React.FC = () => {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        if (!name || !type || !description || !imageFile) {
+        if (!name || !type || !description || !imageUrl) {
             return;
         }
-        onSubmit(name, type, description, imageFile);
+        onSubmit(name, type, description, imageUrl);
     };
 
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.files && event.target.files[0]) {
-            const selectedFile = event.target.files[0];
-
-
-            setImageFile(selectedFile);
-            const reader = new FileReader();
-
-            reader.onloadend = () => {
-                setImagePreviewUrl(reader.result as string);
-            };
-
-            reader.readAsDataURL(selectedFile);
-        }
+        /* const file = event.target.files![0];
+      const reader = new FileReader();
+  
+      reader.onloadend = () => {
+        setImagePreviewUrl(reader.result as string);
+        setImageUrl(file);
+      };
+  
+      reader.readAsDataURL(file); */
+        setImageUrl(event.target.value);
     };
 
     const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -169,6 +157,38 @@ const NewPlantPage: React.FC = () => {
                         autoComplete="off"
                     ></textarea>
                 </div>
+                <div className="flex flex-col">
+                    {/* <label
+              htmlFor="image"
+              className="text-sm font-medium text-gray-700 mb-2"
+            >
+              Image
+            </label>
+            <input
+              type="file"
+              name="image"
+              id="image"
+              required
+              accept="image/*"
+              onChange={handleImageChange}
+              className="py-2 px-4 mb-2 focus:outline-none focus:ring focus:ring-green-500"
+            /> */}
+                    <label
+                        htmlFor="nom"
+                        className="text-sm font-medium text-gray-700 mb-2"
+                    >
+                        url de l'image en attendant
+                    </label>
+                    <input
+                        type="text"
+                        name="url"
+                        id="url"
+                        required
+                        value={imageUrl}
+                        onChange={handleImageChange}
+                        className="border border-gray-300 rounded-lg py-2 px-4 mb-2 focus:outline-none focus:ring focus:ring-green-700"
+                    />
+                </div>
                 {imagePreviewUrl && (
                     <img
                         src={imagePreviewUrl}
@@ -176,23 +196,6 @@ const NewPlantPage: React.FC = () => {
                         className="w-32"
                     />
                 )}
-                <div className="flex flex-col">
-                    <label
-                        htmlFor="image"
-                        className="text-sm font-medium text-gray-700 mb-2"
-                    >
-                        Image
-                    </label>
-                    <input
-                        type="file"
-                        name="image"
-                        id="image"
-                        required
-                        accept="image/*"
-                        onChange={handleImageChange}
-                        className="py-2 px-4 mb-2 focus:outline-none focus:ring focus:ring-green-500"
-                    />
-                </div>
                 <div className="flex justify-center">
                     <button
                         type="submit"

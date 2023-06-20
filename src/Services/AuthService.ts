@@ -3,8 +3,7 @@ import { UserProps } from "../shared/interfaces";
 import getHeaders from "./AuthHeader";
 import { useNavigate } from "react-router-dom";
 
-/* const API_URL = "http://localhost:8000"; */
-const API_URL = "http://192.168.1.18:8000";
+const API_URL = "http://localhost:8000";
 
 export default class AuthService {
     static async login(username: string, password: string) {
